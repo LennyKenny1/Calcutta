@@ -25,10 +25,21 @@
 </head>
 <body>
     <div class="container">
-        <iframe id="googleSheet" src="https://docs.google.com/spreadsheets/d/16Iwoq06hUWiTrhRqV7ndYX2vmkvKFBvKZq5N53mv-1g/edit?usp=sharing&amp;rm=minimal#gid=0"></iframe>
+        <iframe id="googleSheet" src=""></iframe>
     </div>
 
     <script>
+        // Function to load the Google Sheets based on user selection
+        function loadGoogleSheet(sheetId) {
+            var iframe = document.getElementById('googleSheet');
+            if (iframe) {
+                iframe.src = "https://docs.google.com/spreadsheets/d/" + sheetId + "/edit?usp=sharing&amp;rm=minimal#gid=0";
+            }
+        }
+
+        // Load the default Google Sheet when the page loads
+        loadGoogleSheet("16Iwoq06hUWiTrhRqV7ndYX2vmkvKFBvKZq5N53mv-1g");
+
         // Adjust the height of the iframe based on the viewport height
         function adjustIframeHeight() {
             var iframe = document.getElementById('googleSheet');
@@ -43,12 +54,6 @@
         
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
-
-        // Listen for back button clicks
-        window.addEventListener('popstate', function(event) {
-            // Navigate back in the browser history
-            window.history.go(-1);
-        });
     </script>
 </body>
 </html>
