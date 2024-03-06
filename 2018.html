@@ -44,16 +44,10 @@
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
 
-        // Store the original URL when the page is loaded
-        var originalUrl = window.location.href;
-
-        // Intercept browser back button click event
+        // Listen for back button clicks
         window.addEventListener('popstate', function(event) {
-            // Check if the current URL is the original URL
-            if (window.location.href === originalUrl) {
-                // Navigate back to the previous website page
-                window.history.back();
-            }
+            // Navigate back in the browser history
+            window.history.go(-1);
         });
     </script>
 </body>
