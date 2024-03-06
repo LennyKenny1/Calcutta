@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-    // Listen for when the user navigates away from the embedded Google Sheets page
-    window.addEventListener('beforeunload', function(event) {
-        // Redirect the user back to the previous website page
-        window.history.back();
-    });
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2018 March Madness Tournament Data</title>
@@ -19,16 +12,13 @@
             background-color: #f4f4f4;
         }
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
         iframe {
             width: 100%;
-            height: 600px;
+            height: 100vh; /* Adjust the height based on the viewport height */
             border: none;
         }
     </style>
@@ -37,6 +27,22 @@
     <div class="container">
         <iframe src="https://docs.google.com/spreadsheets/d/16Iwoq06hUWiTrhRqV7ndYX2vmkvKFBvKZq5N53mv-1g/edit?usp=sharing&amp;rm=minimal#gid=0"></iframe>
     </div>
+
+    <script>
+        // Adjust the height of the iframe based on the viewport height
+        function adjustIframeHeight() {
+            var iframe = document.querySelector('iframe');
+            if (iframe) {
+                var windowHeight = window.innerHeight;
+                iframe.style.height = windowHeight + 'px';
+            }
+        }
+        
+        // Call the adjustIframeHeight function when the window is resized
+        window.addEventListener('resize', adjustIframeHeight);
+        
+        // Initial adjustment of iframe height on page load
+        adjustIframeHeight();
+    </script>
 </body>
 </html>
-
