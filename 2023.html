@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-    // Listen for when the user navigates away from the embedded Google Sheets page
-    window.addEventListener('beforeunload', function(event) {
-        // Redirect the user back to the previous website page
-        window.history.back();
-    });
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2023 March Madness Tournament Data</title>
@@ -19,23 +12,74 @@
             background-color: #f4f4f4;
         }
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
         iframe {
             width: 100%;
-            height: 600px;
+            height: 100vh; /* Adjust the height based on the viewport height */
             border: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <iframe src="https://docs.google.com/spreadsheets/d/1awiVDmlnS55jQBRzuLYoveQEBqLTs2kZ9TJT8YXc2Uk/edit?usp=sharing"></iframe>
+        <iframe id="googleSheet" src=""></iframe>
     </div>
+
+    <script>
+        // Function to load the Google Sheets based on user selection
+        function loadGoogleSheet(sheetId) {
+            var iframe = document.getElementById('googleSheet');
+            if (iframe) {
+                iframe.src = "https://docs.google.com/spreadsheets/d/" + sheetId + "/edit?usp=sharing&amp;rm=minimal#gid=0";
+            }
+        }
+
+        // Load the default Google Sheet when the page loads
+        loadGoogleSheet("1awiVDmlnS55jQBRzuLYoveQEBqLTs2kZ9TJT8YXc2Uk");
+
+        // Adjust the height of the iframe based on the viewport height
+        function adjustIframeHeight() {
+            var iframe = document.getElementById('googleSheet');
+            if (iframe) {
+                var windowHeight = window.innerHeight;
+                iframe.style.height = windowHeight + 'px';
+            }
+        }
+        
+        // Call the adjustIframeHeight function when the window is resized
+        window.addEventListener('resize', adjustIframeHeight);
+        
+        // Initial adjustment of iframe height on page load
+        adjustIframeHeight();
+
+        // Track user's navigation within the website
+        var navigationStack = [];
+
+        window.addEventListener('load', function() {
+            // Push the initial page (current URL) to the navigation stack
+            navigationStack.push(window.location.href);
+
+            // Listen for iframe navigation changes
+            var iframe = document.getElementById('googleSheet');
+            iframe.addEventListener('load', function() {
+                // Push the embedded Google Sheets page URL to the navigation stack
+                navigationStack.push(iframe.contentWindow.location.href);
+            });
+        });
+
+        // Intercept browser back button click event
+        window.addEventListener('popstate', function(event) {
+            // Pop the last page URL from the navigation stack
+            var previousPage = navigationStack.pop();
+            
+            // Navigate to the previous page if it is not an embedded Google Sheets page
+            if (!previousPage.includes("docs.google.com")) {
+                window.location.href = previousPage;
+            }
+        });
+    </script>
 </body>
 </html>
