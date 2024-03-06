@@ -48,10 +48,10 @@
                 iframe.style.height = windowHeight + 'px';
             }
         }
-        
+
         // Call the adjustIframeHeight function when the window is resized
         window.addEventListener('resize', adjustIframeHeight);
-        
+
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
 
@@ -74,7 +74,7 @@
         window.addEventListener('popstate', function(event) {
             // Pop the last page URL from the navigation stack
             var previousPage = navigationStack.pop();
-            
+
             // Navigate to the previous page if it is not an embedded Google Sheets page
             if (!previousPage.includes("docs.google.com")) {
                 window.location.href = previousPage;
@@ -83,4 +83,3 @@
     </script>
 </body>
 </html>
-
