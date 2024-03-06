@@ -25,13 +25,13 @@
 </head>
 <body>
     <div class="container">
-        <iframe src="https://docs.google.com/spreadsheets/d/16Iwoq06hUWiTrhRqV7ndYX2vmkvKFBvKZq5N53mv-1g/edit?usp=sharing&amp;rm=minimal#gid=0"></iframe>
+        <iframe id="googleSheet" src="https://docs.google.com/spreadsheets/d/16Iwoq06hUWiTrhRqV7ndYX2vmkvKFBvKZq5N53mv-1g/edit?usp=sharing&amp;rm=minimal#gid=0"></iframe>
     </div>
 
     <script>
         // Adjust the height of the iframe based on the viewport height
         function adjustIframeHeight() {
-            var iframe = document.querySelector('iframe');
+            var iframe = document.getElementById('googleSheet');
             if (iframe) {
                 var windowHeight = window.innerHeight;
                 iframe.style.height = windowHeight + 'px';
@@ -43,6 +43,12 @@
         
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
+
+        // Intercept browser back button click event
+        window.addEventListener('popstate', function(event) {
+            // Navigate back to the previous website page
+            window.history.back();
+        });
     </script>
 </body>
 </html>
