@@ -23,7 +23,7 @@
             display: block;
         }
         .toolbar {
-            background-color: #333;
+            background-color: #009CDE; /* NCAA blue background */
             color: #fff;
             padding: 10px 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -38,6 +38,7 @@
 </head>
 <body>
     <div class="toolbar">
+        <a href="index.html">Home</a>
         <a href="2023.html">2023</a>
         <a href="2022.html">2022</a>
         <a href="2018.html">2018</a>
@@ -49,4 +50,20 @@
 
     <script>
         // Adjust the height of the iframe based on the viewport height minus toolbar height
-        function adjustIframe
+        function adjustIframeHeight() {
+            var toolbarHeight = document.querySelector('.toolbar').offsetHeight;
+            var iframe = document.querySelector('iframe');
+            if (iframe) {
+                var windowHeight = window.innerHeight;
+                iframe.style.height = (windowHeight - toolbarHeight) + 'px';
+            }
+        }
+        
+        // Call the adjustIframeHeight function when the window is resized
+        window.addEventListener('resize', adjustIframeHeight);
+        
+        // Initial adjustment of iframe height on page load
+        adjustIframeHeight();
+    </script>
+</body>
+</html>
