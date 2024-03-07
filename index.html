@@ -38,9 +38,33 @@
             align-items: center; /* Center items vertically */
             margin-bottom: 20px; /* Add space between toolbar and content */
         }
+        .toolbar .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .toolbar .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .toolbar .dropdown-content a {
+            color: #000000; /* Updated color */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .toolbar .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .toolbar .dropdown:hover .dropdown-content {
+            display: block;
+        }
         .toolbar a {
             display: inline-block;
-            margin-right: 20px; /* Add space between links */
             color: #FFFFFF; /* White text */
             text-decoration: none;
         }
@@ -65,11 +89,45 @@
     </header>
     <div class="container">
         <div class="toolbar">
-            <a href="2024.html">2024 Calcutta</a>
-            <a href="2023.html">2023 Calcutta</a>
-            <a href="2022.html">2022 Calcutta</a>
-            <a href="2018.html">2018 Calcutta</a>
-            <a href="2017.html">2017 Calcutta</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown">2024 ▼</a>
+                <div class="dropdown-content">
+                    <a href="2024FullBracket.html">Full Bracket</a>
+                    <a href="2024PicksSorted.html">Picks Sorted</a>
+                    <a href="2024Payouts.html">Payouts</a>
+                    <a href="2024Picks.html">Picks</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown">2023 ▼</a>
+                <div class="dropdown-content">
+                    <a href="2023FullBracket.html">Full Bracket</a>
+                    <a href="2023PicksSorted.html">Picks Sorted</a>
+                    <a href="2023Payouts.html">Payouts</a>
+                    <a href="2023Picks.html">Picks</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown">2022 ▼</a>
+                <div class="dropdown-content">
+                    <a href="2022Payouts.html">Payouts</a>
+                    <a href="2022Picks.html">Picks</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown">2018 ▼</a>
+                <div class="dropdown-content">
+                    <a href="2018Payouts.html">Payouts</a>
+                    <a href="2018Picks.html">Picks</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown">2017 ▼</a>
+                <div class="dropdown-content">
+                    <a href="2017Payouts.html">Payouts</a>
+                    <a href="2017Picks.html">Picks</a>
+                </div>
+            </div>
         </div>
         <div class="content">
             <!-- Your content goes here -->
