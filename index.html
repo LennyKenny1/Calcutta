@@ -37,6 +37,7 @@
             justify-content: center; /* Center items horizontally */
             align-items: center; /* Center items vertically */
             margin-bottom: 20px; /* Add space between toolbar and content */
+            flex-wrap: wrap; /* Wrap items if they exceed container width */
         }
         .toolbar .dropdown {
             position: relative;
@@ -67,6 +68,7 @@
             display: inline-block;
             color: #FFFFFF; /* White text */
             text-decoration: none;
+            margin-right: 20px; /* Add space between links */
         }
         .content {
             flex: 1; /* Take up remaining space */
@@ -81,6 +83,18 @@
             height: 80vh; /* Adjust height as desired */
             border: none;
         }
+
+        /* Responsive adjustments */
+        @media only screen and (max-width: 768px) {
+            .toolbar {
+                flex-direction: column;
+                align-items: flex-start; /* Align items to start vertically */
+            }
+            .toolbar .dropdown {
+                margin-right: 0;
+                margin-bottom: 10px; /* Add space between dropdowns vertically */
+            }
+        }
     </style>
 </head>
 <body>
@@ -89,6 +103,7 @@
     </header>
     <div class="container">
         <div class="toolbar">
+            <a href="index.html">Home</a>
             <div class="dropdown">
                 <a href="#" class="dropdown">2024 ▼</a>
                 <div class="dropdown-content">
