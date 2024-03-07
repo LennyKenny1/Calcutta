@@ -46,12 +46,12 @@
             flex-wrap: wrap; /* Wrap items if they exceed container width */
             width: 100%;
         }
-        .toolbar .dropdown {
+        .dropdown {
             position: relative;
             display: inline-block;
             margin-right: 20px;
         }
-        .toolbar .dropdown-content {
+        .dropdown-content {
             display: none;
             position: absolute;
             background-color: #009CDE; /* Blue background for dropdown content */
@@ -61,21 +61,21 @@
             border-radius: 5px; /* Rounded corners */
             overflow: hidden; /* Ensure content doesn't overflow */
         }
-        .toolbar .dropdown-content a {
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
             color: #FFFFFF; /* White text */
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Border between dropdown items */
         }
-        .toolbar .dropdown-content a:last-child {
+        .dropdown-content a:last-child {
             border-bottom: none; /* Remove border for last dropdown item */
         }
-        .toolbar .dropdown-content a:hover {
+        .dropdown-content a:hover {
             background-color: #0077B6; /* Darker blue on hover */
-        }
-        .toolbar .dropdown:hover .dropdown-content {
-            display: block;
         }
         .toolbar a {
             display: inline-block;
@@ -104,7 +104,7 @@
                 flex-direction: column;
                 align-items: flex-start; /* Align items to start vertically */
             }
-            .toolbar .dropdown {
+            .dropdown {
                 margin-right: 0;
                 margin-bottom: 10px; /* Add space between dropdowns vertically */
             }
@@ -120,7 +120,7 @@
             <div class="toolbar">
                 <a href="index.html">Home</a>
                 <div class="dropdown">
-                    <a href="#" class="dropdown">2024 ▼</a>
+                    <a href="#" class="dropdown-toggle">2024 ▼</a>
                     <div class="dropdown-content">
                         <a href="2024FullBracket.html">Full Bracket</a>
                         <a href="2024PicksSorted.html">Picks Sorted</a>
@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <a href="#" class="dropdown">2023 ▼</a>
+                    <a href="#" class="dropdown-toggle">2023 ▼</a>
                     <div class="dropdown-content">
                         <a href="2023FullBracket.html">Full Bracket</a>
                         <a href="2023PicksSorted.html">Picks Sorted</a>
@@ -138,21 +138,21 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <a href="#" class="dropdown">2022 ▼</a>
+                    <a href="#" class="dropdown-toggle">2022 ▼</a>
                     <div class="dropdown-content">
                         <a href="2022Payouts.html">Payouts</a>
                         <a href="2022Picks.html">Picks</a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <a href="#" class="dropdown">2018 ▼</a>
+                    <a href="#" class="dropdown-toggle">2018 ▼</a>
                     <div class="dropdown-content">
                         <a href="2018Payouts.html">Payouts</a>
                         <a href="2018Picks.html">Picks</a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <a href="#" class="dropdown">2017 ▼</a>
+                    <a href="#" class="dropdown-toggle">2017 ▼</a>
                     <div class="dropdown-content">
                         <a href="2017Payouts.html">Payouts</a>
                         <a href="2017Picks.html">Picks</a>
@@ -167,26 +167,16 @@
     </div>
 
     <script>
-        // Toggle dropdown content visibility
+        // Function to toggle dropdown content visibility
         function toggleDropdown(dropdown) {
-            var content = dropdown.querySelector('.dropdown-content');
-            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            dropdown.classList.toggle('active');
         }
-
-        // Collapse dropdown when dropdown arrow is clicked
-        document.querySelectorAll('.toolbar .dropdown').forEach(function (dropdown) {
-            dropdown.querySelector('.dropdown').addEventListener('click', function (event) {
-                toggleDropdown(dropdown);
-                event.stopPropagation();
-            });
-        });
 
         // Collapse dropdown when clicking outside of dropdown
         window.addEventListener('click', function (event) {
-            document.querySelectorAll('.toolbar .dropdown').forEach(function (dropdown) {
-                var content = dropdown.querySelector('.dropdown-content');
-                if (content.style.display === 'block' && !dropdown.contains(event.target)) {
-                    content.style.display = 'none';
+            document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+                if (!dropdown.contains(event.target)) {
+                    dropdown.classList.remove('active');
                 }
             });
         });
@@ -206,6 +196,15 @@
         
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
+
+        // Add event listener for dropdown toggles
+        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function(event) {
+                var dropdown = toggle.parentElement;
+                toggleDropdown(dropdown);
+                event.stopPropagation();
+            });
+        });
     </script>
 </body>
 </html>
