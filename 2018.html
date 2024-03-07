@@ -6,6 +6,13 @@
     <title>2018 March Madness Tournament Data</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 100%;
             margin: 0;
             padding: 0;
         }
@@ -17,6 +24,25 @@
     </style>
 </head>
 <body>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSoo1FQnPeZpFJL4HeRwPKlnkuJUklFMpUCci48t8m3oq2q7AZdIsxmnHaKjcbMlU4yUe_BGCqPVSS7/pubhtml?widget=true&amp;headers=false"></iframe>
+    <div class="container">
+        <iframe src="https://docs.google.com/spreadsheets/d/16Iwoq06hUWiTrhRqV7ndYX2vmkvKFBvKZq5N53mv-1g/edit?usp=sharing&amp;rm=minimal#gid=0"></iframe>
+    </div>
+
+    <script>
+        // Adjust the height of the iframe based on the viewport height
+        function adjustIframeHeight() {
+            var iframe = document.querySelector('iframe');
+            if (iframe) {
+                var windowHeight = window.innerHeight;
+                iframe.style.height = windowHeight + 'px';
+            }
+        }
+        
+        // Call the adjustIframeHeight function when the window is resized
+        window.addEventListener('resize', adjustIframeHeight);
+        
+        // Initial adjustment of iframe height on page load
+        adjustIframeHeight();
+    </script>
 </body>
 </html>
