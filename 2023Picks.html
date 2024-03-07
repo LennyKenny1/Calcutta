@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 March Madness Tournament Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
+            border: none;
+            display: block;
+        }
+        .toolbar {
+            background-color: #009CDE; /* NCAA blue background */
+            color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .toolbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <a href="index.html">Home</a>
+        <a href="2024.html">2024</a>
+        <a href="2022.html">2022</a>
+        <a href="2018.html">2018</a>
+        <a href="2017.html">2017</a>
+    </div>
+    <div class="container">
+        <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRdefoMGVs9xj-joAhNoutWLj3iB3ulR-9RlvBxg1idcyVMu30anymty4y8vDcnDeDZZmZ0h-erB9z1/pubhtml?gid=1151441176&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
+    </div>
+
+    <script>
+        // Adjust the height of the iframe based on the viewport height minus toolbar height
+        function adjustIframeHeight() {
+            var toolbarHeight = document.querySelector('.toolbar').offsetHeight;
+            var iframe = document.querySelector('iframe');
+            if (iframe) {
+                var windowHeight = window.innerHeight;
+                iframe.style.height = (windowHeight - toolbarHeight) + 'px';
+            }
+        }
+        
+        // Hide sheet tabs
+        function hideSheetTabs() {
+            var iframe = document.getElementById('embeddedSheet');
+            var sheetTabsContainer = iframe.contentDocument.querySelector('.docs-sheet-tab-area');
+            if (sheetTabsContainer) {
+                sheetTabsContainer.style.display = 'none';
+            }
+        }
+
+        // Call the adjustIframeHeight function when the window is resized
+        window.addEventListener('resize', adjustIframeHeight);
+        
+        // Call the hideSheetTabs function after iframe content is loaded
+        document.getElementById('embeddedSheet').addEventListener('load', function() {
+            hideSheetTabs();
+            adjustIframeHeight();
+        });
+    </script>
+</body>
+</html>
