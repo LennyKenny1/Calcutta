@@ -49,20 +49,4 @@
 
     <script>
         // Adjust the height of the iframe based on the viewport height minus toolbar height
-        function adjustIframeHeight() {
-            var toolbarHeight = document.querySelector('.toolbar').offsetHeight;
-            var iframe = document.querySelector('iframe');
-            if (iframe) {
-                var windowHeight = window.innerHeight;
-                iframe.style.height = (windowHeight - toolbarHeight) + 'px';
-            }
-        }
-        
-        // Call the adjustIframeHeight function when the window is resized
-        window.addEventListener('resize', adjustIframeHeight);
-        
-        // Initial adjustment of iframe height on page load
-        adjustIframeHeight();
-    </script>
-</body>
-</html>
+        function adjustIframe
