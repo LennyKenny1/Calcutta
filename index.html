@@ -119,7 +119,7 @@
         <div class="toolbar-container">
             <div class="toolbar">
                 <a href="index.html">Home</a>
-                <div class="dropdown">
+                <div class="dropdown" id="dropdown2024">
                     <a href="#" class="dropdown-toggle">2024 ▼</a>
                     <div class="dropdown-content">
                         <a href="2024FullBracket.html">Full Bracket</a>
@@ -128,7 +128,7 @@
                         <a href="2024Picks.html">Picks</a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" id="dropdown2023">
                     <a href="#" class="dropdown-toggle">2023 ▼</a>
                     <div class="dropdown-content">
                         <a href="2023FullBracket.html">Full Bracket</a>
@@ -137,21 +137,21 @@
                         <a href="2023Picks.html">Picks</a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" id="dropdown2022">
                     <a href="#" class="dropdown-toggle">2022 ▼</a>
                     <div class="dropdown-content">
                         <a href="2022Payouts.html">Payouts</a>
                         <a href="2022Picks.html">Picks</a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" id="dropdown2018">
                     <a href="#" class="dropdown-toggle">2018 ▼</a>
                     <div class="dropdown-content">
                         <a href="2018Payouts.html">Payouts</a>
                         <a href="2018Picks.html">Picks</a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="dropdown" id="dropdown2017">
                     <a href="#" class="dropdown-toggle">2017 ▼</a>
                     <div class="dropdown-content">
                         <a href="2017Payouts.html">Payouts</a>
@@ -169,6 +169,11 @@
     <script>
         // Function to toggle dropdown content visibility
         function toggleDropdown(dropdown) {
+            document.querySelectorAll('.dropdown-content').forEach(function (dropdownContent) {
+                if (dropdownContent.parentElement !== dropdown) {
+                    dropdownContent.parentElement.classList.remove('active');
+                }
+            });
             dropdown.classList.toggle('active');
         }
 
@@ -199,7 +204,7 @@
 
         // Add event listener for dropdown toggles
         document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-            toggle.addEventListener('click', function(event) {
+            toggle.addEventListener('mouseenter', function(event) {
                 var dropdown = toggle.parentElement;
                 toggleDropdown(dropdown);
                 event.stopPropagation();
