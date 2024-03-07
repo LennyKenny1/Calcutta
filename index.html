@@ -37,6 +37,7 @@
             align-items: center; /* Center items vertically */
             margin: 0; /* Reset margin */
             flex-wrap: wrap; /* Wrap items if they exceed container width */
+            border-radius: 5px; /* Rounded corners */
         }
         .toolbar {
             display: flex;
@@ -171,22 +172,13 @@
             }
         }
 
-        // Collapse dropdown when dropdown arrow is clicked
-        document.querySelectorAll('.toolbar .dropdown').forEach(function (dropdown) {
-            dropdown.querySelector('.dropdown').addEventListener('click', function (event) {
-                toggleDropdown(dropdown);
-                event.stopPropagation();
-            });
-        });
-
         // Collapse dropdown when clicking outside of dropdown
         window.addEventListener('click', function (event) {
-            document.querySelectorAll('.toolbar .dropdown').forEach(function (dropdown) {
-                var content = dropdown.querySelector('.dropdown-content');
-                if (content.style.display === 'block' && !dropdown.contains(event.target)) {
-                    content.style.display = 'none';
-                }
-            });
+            if (!event.target.classList.contains('dropdown')) {
+                document.querySelectorAll('.toolbar .dropdown-content').forEach(function (dropdownContent) {
+                    dropdownContent.style.display = 'none';
+                });
+            }
         });
 
         // Adjust the height of the iframe based on the viewport height minus toolbar height
@@ -204,6 +196,14 @@
         
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
+
+        // Event listener for toggling dropdown menus
+        document.querySelectorAll('.toolbar .dropdown').forEach(function (dropdown) {
+            dropdown.addEventListener('click', function (event) {
+                toggleDropdown(dropdown);
+                event.stopPropagation();
+            });
+        });
     </script>
 </body>
 </html>
