@@ -167,14 +167,10 @@
     </div>
 
     <script>
-        // Function to toggle dropdown content visibility
+        // Toggle dropdown content visibility
         function toggleDropdown(dropdown) {
             var content = dropdown.querySelector('.dropdown-content');
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-            } else {
-                content.style.display = 'block';
-            }
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
         }
 
         // Collapse dropdown when dropdown arrow is clicked
