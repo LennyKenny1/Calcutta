@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2024 March Madness Tournament Data</title>
+    <title>2018 March Madness Tournament Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,24 +25,13 @@
 </head>
 <body>
     <div class="container">
-        <iframe id="googleSheet" src=""></iframe>
+        <iframe src="https://docs.google.com/spreadsheets/d/1zb8ddZaIMYYPOmsHYuvevobDjY94u9WeDRSUCRFGYa0/edit?usp=sharing&amp;rm=minimal#gid=0"></iframe>
     </div>
 
     <script>
-        // Function to load the Google Sheets based on user selection
-        function loadGoogleSheet(sheetId) {
-            var iframe = document.getElementById('googleSheet');
-            if (iframe) {
-                iframe.src = "https://docs.google.com/spreadsheets/d/" + sheetId + "/edit?usp=sharing&amp;rm=minimal#gid=0";
-            }
-        }
-
-        // Load the default Google Sheet when the page loads
-        loadGoogleSheet("1zb8ddZaIMYYPOmsHYuvevobDjY94u9WeDRSUCRFGYa0");
-
         // Adjust the height of the iframe based on the viewport height
         function adjustIframeHeight() {
-            var iframe = document.getElementById('googleSheet');
+            var iframe = document.querySelector('iframe');
             if (iframe) {
                 var windowHeight = window.innerHeight;
                 iframe.style.height = windowHeight + 'px';
@@ -54,32 +43,6 @@
         
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
-
-        // Track user's navigation within the website
-        var navigationStack = [];
-
-        window.addEventListener('load', function() {
-            // Push the initial page (current URL) to the navigation stack
-            navigationStack.push(window.location.href);
-
-            // Listen for iframe navigation changes
-            var iframe = document.getElementById('googleSheet');
-            iframe.addEventListener('load', function() {
-                // Push the embedded Google Sheets page URL to the navigation stack
-                navigationStack.push(iframe.contentWindow.location.href);
-            });
-        });
-
-        // Intercept browser back button click event
-        window.addEventListener('popstate', function(event) {
-            // Pop the last page URL from the navigation stack
-            var previousPage = navigationStack.pop();
-            
-            // Navigate to the previous page if it is not an embedded Google Sheets page
-            if (!previousPage.includes("docs.google.com")) {
-                window.location.href = previousPage;
-            }
-        });
     </script>
 </body>
 </html>
