@@ -38,6 +38,7 @@
             align-items: center; /* Center items vertically */
             margin: 0; /* Reset margin */
             border-radius: 5px; /* Rounded corners */
+            overflow-x: auto; /* Allow horizontal scrolling */
         }
         .toolbar {
             display: flex;
@@ -101,12 +102,20 @@
         /* Responsive adjustments */
         @media only screen and (max-width: 768px) {
             .toolbar {
-                flex-direction: column;
-                align-items: flex-start; /* Align items to start vertically */
+                flex-direction: row;
+                overflow-x: auto;
+                overflow-y: hidden;
             }
             .dropdown {
-                margin-right: 0;
-                margin-bottom: 10px; /* Add space between dropdowns vertically */
+                margin-right: 10px;
+                margin-bottom: 0; /* Reset margin */
+            }
+            .dropdown .dropdown-content {
+                top: 50px; /* Adjust dropdown position */
+                left: 0; /* Align dropdown to the left */
+            }
+            .dropdown.active .dropdown-content {
+                display: block;
             }
         }
     </style>
@@ -169,12 +178,16 @@
     <script>
         // Function to toggle dropdown content visibility
         function toggleDropdown(dropdown) {
-            document.querySelectorAll('.dropdown-content').forEach(function (dropdownContent) {
-                if (dropdownContent.parentElement !== dropdown) {
-                    dropdownContent.parentElement.classList.remove('active');
+            dropdown.classList.toggle('active');
+        }
+
+        // Collapse other dropdowns when one is opened
+        function collapseOtherDropdowns(activeDropdown) {
+            document.querySelectorAll('.dropdown').forEach(function (dropdown) {
+                if (dropdown !== activeDropdown && dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
                 }
             });
-            dropdown.classList.toggle('active');
         }
 
         // Collapse dropdown when clicking outside of dropdown
@@ -183,6 +196,16 @@
                 if (!dropdown.contains(event.target)) {
                     dropdown.classList.remove('active');
                 }
+            });
+        });
+
+        // Add event listener for dropdown toggles
+        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+            toggle.addEventListener('mouseenter', function(event) {
+                var dropdown = toggle.parentElement;
+                toggleDropdown(dropdown);
+                collapseOtherDropdowns(dropdown);
+                event.stopPropagation();
             });
         });
 
@@ -201,15 +224,6 @@
         
         // Initial adjustment of iframe height on page load
         adjustIframeHeight();
-
-        // Add event listener for dropdown toggles
-        document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-            toggle.addEventListener('mouseenter', function(event) {
-                var dropdown = toggle.parentElement;
-                toggleDropdown(dropdown);
-                event.stopPropagation();
-            });
-        });
     </script>
 </body>
 </html>
