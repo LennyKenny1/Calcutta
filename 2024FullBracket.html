@@ -128,6 +128,18 @@
             }
         }
 
+        // Collapse dropdowns when clicking outside on mobile devices
+        function collapseDropdownsOnMobile(event) {
+            if (window.innerWidth <= 768) { // Assuming mobile devices have a maximum width of 768px
+                var dropdowns = document.querySelectorAll('.dropdown-content');
+                dropdowns.forEach(function(dropdown) {
+                    if (dropdown.style.display === 'block' && !dropdown.contains(event.target)) {
+                        dropdown.style.display = 'none';
+                    }
+                });
+            }
+        }
+
         // Call the adjustIframeHeight function when the window is resized
         window.addEventListener('resize', adjustIframeHeight);
         
@@ -136,6 +148,9 @@
             hideSheetTabs();
             adjustIframeHeight();
         });
+
+        // Add event listener to collapse dropdowns on mobile
+        document.body.addEventListener('click', collapseDropdownsOnMobile);
     </script>
 </body>
 </html>
