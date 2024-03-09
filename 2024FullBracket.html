@@ -128,14 +128,12 @@
             }
         }
 
-        // Collapse dropdowns when clicking outside on mobile devices
+        // Collapse dropdowns when tapping outside on mobile devices
         function collapseDropdownsOnMobile(event) {
-            if (window.innerWidth <= 768) { // Assuming mobile devices have a maximum width of 768px
+            if (window.innerWidth <= 768 && event.target.closest('.dropdown') === null) {
                 var dropdowns = document.querySelectorAll('.dropdown-content');
                 dropdowns.forEach(function(dropdown) {
-                    if (dropdown.style.display === 'block' && !dropdown.contains(event.target)) {
-                        dropdown.style.display = 'none';
-                    }
+                    dropdown.style.display = 'none';
                 });
             }
         }
@@ -151,7 +149,7 @@
             hideSheetTabs();
             adjustIframeHeight();
         });
-        document.body.addEventListener('click', collapseDropdownsOnMobile);
+        document.addEventListener('touchstart', collapseDropdownsOnMobile);
 
         // Handle dropdown clicks
         var dropdowns = document.querySelectorAll('.dropdown');
