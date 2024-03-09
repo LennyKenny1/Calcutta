@@ -139,7 +139,7 @@
 
         // Collapse dropdowns when tapping outside on mobile devices
         function collapseDropdownsOnMobile(event) {
-            if (window.innerWidth <= 768 && event.target.closest('.dropdown') === null) {
+            if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
                 var dropdowns = document.querySelectorAll('.dropdown-content');
                 dropdowns.forEach(function(dropdown) {
                     dropdown.style.display = 'none';
@@ -172,8 +172,6 @@
             adjustIframeHeight();
         });
         document.body.addEventListener('click', collapseDropdownsOnMobile);
-
-        // Add event listener for dropdown clicks
         var dropdownArrows = document.querySelectorAll('.dropdown-arrow');
         dropdownArrows.forEach(function(arrow) {
             arrow.addEventListener('click', handleDropdownClick);
