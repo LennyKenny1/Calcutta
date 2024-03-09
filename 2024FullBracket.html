@@ -140,17 +140,28 @@
             }
         }
 
-        // Call the adjustIframeHeight function when the window is resized
+        // Toggle dropdown visibility
+        function toggleDropdown(dropdownContent) {
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Add event listeners
         window.addEventListener('resize', adjustIframeHeight);
-        
-        // Call the hideSheetTabs function after iframe content is loaded
         document.getElementById('embeddedSheet').addEventListener('load', function() {
             hideSheetTabs();
             adjustIframeHeight();
         });
-
-        // Add event listener to collapse dropdowns on mobile
         document.body.addEventListener('click', collapseDropdownsOnMobile);
+
+        // Handle dropdown clicks
+        var dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(function(dropdown) {
+            dropdown.addEventListener('click', function(event) {
+                var dropdownContent = event.target.nextElementSibling;
+                toggleDropdown(dropdownContent);
+                event.stopPropagation();
+            });
+        });
     </script>
 </body>
 </html>
