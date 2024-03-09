@@ -59,25 +59,13 @@
         .toolbar .dropdown:hover .dropdown-content {
             display: block;
         }
-        .dropdown-arrow {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid #fff;
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-        }
     </style>
 </head>
 <body>
     <div class="toolbar">
         <a href="index.html">Home</a>
         <div class="dropdown">
-            <a href="2024.html" class="dropdown">2024<span class="dropdown-arrow"></span></a>
+            <a href="#" class="dropdown">2024 ▼</a>
             <div class="dropdown-content">
                 <a href="2024FullBracket.html">Full Bracket</a>
                 <a href="2024PicksSorted.html">Picks Sorted</a>
@@ -86,7 +74,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <a href="2023.html" class="dropdown">2023<span class="dropdown-arrow"></span></a>
+            <a href="#" class="dropdown">2023 ▼</a>
             <div class="dropdown-content">
                 <a href="2023FullBracket.html">Full Bracket</a>
                 <a href="2023PicksSorted.html">Picks Sorted</a>
@@ -95,21 +83,21 @@
             </div>
         </div>
         <div class="dropdown">
-            <a href="2022.html" class="dropdown">2022<span class="dropdown-arrow"></span></a>
+            <a href="#" class="dropdown">2022 ▼</a>
             <div class="dropdown-content">
                 <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
             </div>
         </div>
         <div class="dropdown">
-            <a href="2018.html" class="dropdown">2018<span class="dropdown-arrow"></span></a>
+            <a href="#" class="dropdown">2018 ▼</a>
             <div class="dropdown-content">
                 <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
         <div class="dropdown">
-            <a href="2017.html" class="dropdown">2017<span class="dropdown-arrow"></span></a>
+            <a href="#" class="dropdown">2017 ▼</a>
             <div class="dropdown-content">
                 <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
@@ -140,11 +128,6 @@
             }
         }
 
-        // Toggle dropdown content visibility
-        function toggleDropdownContent(dropdownContent) {
-            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-        }
-
         // Call the adjustIframeHeight function when the window is resized
         window.addEventListener('resize', adjustIframeHeight);
         
@@ -152,14 +135,6 @@
         document.getElementById('embeddedSheet').addEventListener('load', function() {
             hideSheetTabs();
             adjustIframeHeight();
-        });
-
-        // Event listener for dropdown clicks
-        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
-            var dropdownContent = dropdown.querySelector('.dropdown-content');
-            dropdown.querySelector('.dropdown-arrow').addEventListener('click', function() {
-                toggleDropdownContent(dropdownContent);
-            });
         });
     </script>
 </body>
