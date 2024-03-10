@@ -68,8 +68,8 @@
 <body>
     <div class="toolbar">
         <a href="index.html">Home</a>
-        <div class="dropdown" id="dropdown2024">
-            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2024')">2024 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
+            <a href="#">2024 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2024">
                 <a href="2024FullBracket.html">Full Bracket</a>
                 <a href="2024PicksSorted.html">Picks Sorted</a>
@@ -77,8 +77,8 @@
                 <a href="2024Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown" id="dropdown2023">
-            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2023')">2023 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
+            <a href="#">2023 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2023">
                 <a href="2023FullBracket.html">Full Bracket</a>
                 <a href="2023PicksSorted.html">Picks Sorted</a>
@@ -86,22 +86,22 @@
                 <a href="2023Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown" id="dropdown2022">
-            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2022')">2022 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)">
+            <a href="#">2022 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown" id="dropdown2018">
-            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2018')">2018 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
+            <a href="#">2018 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown" id="dropdown2017">
-            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2017')">2017 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)">
+            <a href="#">2017 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
@@ -122,7 +122,7 @@
                 iframe.style.height = (windowHeight - toolbarHeight) + 'px';
             }
         }
-        
+
         // Hide sheet tabs
         function hideSheetTabs() {
             var iframe = document.getElementById('embeddedSheet');
@@ -133,9 +133,9 @@
         }
 
         // Toggle dropdown visibility
-        function toggleDropdown(dropdownId) {
+        function toggleDropdown(dropdownId, show) {
             var dropdownContent = document.getElementById(dropdownId);
-            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+            dropdownContent.style.display = show ? 'block' : 'none';
         }
 
         // Collapse dropdowns when tapping outside on mobile devices
