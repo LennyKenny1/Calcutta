@@ -25,15 +25,17 @@
         .toolbar {
             background-color: #009CDE; /* NCAA blue background */
             color: #fff;
-            padding: 10px 20px;
+            padding: 10px 0; /* Updated padding */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the toolbar */
         }
         .toolbar a {
             color: #fff;
             text-decoration: none;
-            margin-right: 20px;
+            margin: 0 10px; /* Add margin to create space between links */
             font-weight: bold;
             position: relative;
+            display: inline-block; /* Display links inline */
         }
         .toolbar .dropdown {
             position: relative;
@@ -63,11 +65,18 @@
         .dropdown-arrow {
             display: inline-block;
         }
+        h1 {
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+            background-color: #009CDE;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <h1>March Madness Calcutta</h1>
     <div class="toolbar">
-        <a href="index.html">Home</a>
         <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
             <a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2024">
