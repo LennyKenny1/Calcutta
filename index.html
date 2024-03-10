@@ -28,6 +28,8 @@
             padding: 10px 0; /* Updated padding */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center; /* Center the toolbar */
+            white-space: nowrap; /* Prevent line breaks */
+            overflow-x: auto; /* Add horizontal scroll if necessary */
         }
         .toolbar a {
             color: #fff;
@@ -72,50 +74,19 @@
             background-color: #009CDE;
             color: #fff;
         }
+
+        /* Media query for adjusting font size */
+        @media screen and (max-width: 768px) {
+            .toolbar a {
+                font-size: 12px; /* Adjust font size for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
     <h1>March Madness Calcutta</h1>
     <div class="toolbar">
-        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2024">
-                <a href="2024FullBracket.html">Full Bracket</a>
-                <a href="2024PicksSorted.html">Picks Sorted</a>
-                <a href="2024Payouts.html">Payouts</a>
-                <a href="2024Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2023">
-                <a href="2023FullBracket.html">Full Bracket</a>
-                <a href="2023PicksSorted.html">Picks Sorted</a>
-                <a href="2023Payouts.html">Payouts</a>
-                <a href="2023Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2022')">2022 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2022">
-                <a href="2022Payouts.html">Payouts</a>
-                <a href="2022Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2018">
-                <a href="2018Payouts.html">Payouts</a>
-                <a href="2018Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2017')">2017 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2017">
-                <a href="2017Payouts.html">Payouts</a>
-                <a href="2017Picks.html">Picks</a>
-            </div>
-        </div>
+        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)"><a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a><div class="dropdown-content" id="dropdownContent2024"><a href="2024FullBracket.html">Full Bracket</a><a href="2024PicksSorted.html">Picks Sorted</a><a href="2024Payouts.html">Payouts</a><a href="2024Picks.html">Picks</a></div></div><div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)"><a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a><div class="dropdown-content" id="dropdownContent2023"><a href="2023FullBracket.html">Full Bracket</a><a href="2023PicksSorted.html">Picks Sorted</a><a href="2023Payouts.html">Payouts</a><a href="2023Picks.html">Picks</a></div></div><div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)"><a href="#" onclick="handleDropdownClick(event, 'dropdown2022')">2022 <span class="dropdown-arrow">▼</span></a><div class="dropdown-content" id="dropdownContent2022"><a href="2022Payouts.html">Payouts</a><a href="2022Picks.html">Picks</a></div></div><div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)"><a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a><div class="dropdown-content" id="dropdownContent2018"><a href="2018Payouts.html">Payouts</a><a href="2018Picks.html">Picks</a></div></div><div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)"><a href="#" onclick="handleDropdownClick(event, 'dropdown2017')">2017 <span class="dropdown-arrow">▼</span></a><div class="dropdown-content" id="dropdownContent2017"><a href="2017Payouts.html">Payouts</a><a href="2017Picks.html">Picks</a></div></div>
     </div>
     <div class="container" onclick="collapseDropdownsOnMobile(event)">
         <iframe id="embeddedSheet" src="https://www.ncaa.com/march-madness-live/bracket"></iframe>
