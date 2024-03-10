@@ -108,7 +108,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" onclick="collapseDropdownsOnMobile(event)">
         <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSUruBLuSgdHs4mu_BPh_qRg07ngRKyR04-wm7oddj3ZOARh3f7wKv-px14BU1kqowKJpqV7CGC-l0S/pubhtml?gid=788313377&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
     </div>
 
@@ -138,7 +138,7 @@
             dropdownContent.style.display = show ? 'block' : 'none';
         }
 
-        // Collapse dropdowns when tapping outside on mobile devices
+        // Collapse dropdowns when tapping outside on mobile devices or clicking inside the embedded sheet
         function collapseDropdownsOnMobile(event) {
             if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
                 var dropdownContents = document.querySelectorAll('.dropdown-content');
@@ -161,7 +161,6 @@
             hideSheetTabs();
             adjustIframeHeight();
         });
-        document.body.addEventListener('click', collapseDropdownsOnMobile);
     </script>
 </body>
 </html>
