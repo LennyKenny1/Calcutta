@@ -25,15 +25,17 @@
         .toolbar {
             background-color: #009CDE; /* NCAA blue background */
             color: #fff;
-            padding: 10px 20px;
+            padding: 10px 0; /* Updated padding */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the toolbar */
         }
         .toolbar a {
             color: #fff;
             text-decoration: none;
-            margin-right: 20px;
+            margin: 0 10px; /* Add margin to create space between links */
             font-weight: bold;
             position: relative;
+            display: inline-block; /* Display links inline */
         }
         .toolbar .dropdown {
             position: relative;
@@ -59,52 +61,64 @@
         .toolbar .dropdown:hover .dropdown-content {
             display: block;
         }
+        /* Show dropdown arrows */
+        .dropdown-arrow {
+            display: inline-block;
+        }
+        h1 {
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+            background-color: #009CDE;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <h1>March Madness Calcutta</h1>
     <div class="toolbar">
         <a href="index.html">Home</a>
-        <div class="dropdown">
-            <a href="2024.html" class="dropdown">2024 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2024">
                 <a href="2024FullBracket.html">Full Bracket</a>
                 <a href="2024PicksSorted.html">Picks Sorted</a>
                 <a href="2024Payouts.html">Payouts</a>
                 <a href="2024Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="2023.html" class="dropdown">2023 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2023">
                 <a href="2023FullBracket.html">Full Bracket</a>
                 <a href="2023PicksSorted.html">Picks Sorted</a>
                 <a href="2023Payouts.html">Payouts</a>
                 <a href="2023Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="2022.html" class="dropdown">2022 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2022')">2022 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="2018.html" class="dropdown">2018 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="2017.html" class="dropdown">2017 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2017')">2017 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" onclick="collapseDropdownsOnMobile(event)">
         <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRdefoMGVs9xj-joAhNoutWLj3iB3ulR-9RlvBxg1idcyVMu30anymty4y8vDcnDeDZZmZ0h-erB9z1/pubhtml?gid=1151441176&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
     </div>
 
@@ -118,7 +132,7 @@
                 iframe.style.height = (windowHeight - toolbarHeight) + 'px';
             }
         }
-        
+
         // Hide sheet tabs
         function hideSheetTabs() {
             var iframe = document.getElementById('embeddedSheet');
@@ -128,10 +142,37 @@
             }
         }
 
-        // Call the adjustIframeHeight function when the window is resized
+        // Toggle dropdown visibility
+        function toggleDropdown(dropdownId, show) {
+            var dropdownContent = document.getElementById(dropdownId);
+            dropdownContent.style.display = show ? 'block' : 'none';
+        }
+
+        // Collapse dropdowns when tapping outside on mobile devices or clicking inside the embedded sheet
+        function collapseDropdownsOnMobile(event) {
+            if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+            }
+            if (window.innerWidth <= 768 && event.target.closest('#embeddedSheet')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+            }
+        }
+
+        // Handle dropdown click events
+        function handleDropdownClick(event, dropdownId) {
+            var dropdownContent = document.getElementById(dropdownId).querySelector('.dropdown-content');
+            toggleDropdown(dropdownContent.id, dropdownContent.style.display === 'none');
+            event.stopPropagation();
+        }
+
+        // Add event listeners
         window.addEventListener('resize', adjustIframeHeight);
-        
-        // Call the hideSheetTabs function after iframe content is loaded
         document.getElementById('embeddedSheet').addEventListener('load', function() {
             hideSheetTabs();
             adjustIframeHeight();
