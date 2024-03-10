@@ -146,6 +146,12 @@
                     content.style.display = 'none';
                 });
             }
+            if (window.innerWidth <= 768 && event.target.closest('#embeddedSheet')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+            }
         }
 
         // Handle dropdown click events
