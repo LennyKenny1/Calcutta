@@ -59,53 +59,57 @@
         .toolbar .dropdown:hover .dropdown-content {
             display: block;
         }
+        /* Show dropdown arrows */
+        .dropdown-arrow {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
     <div class="toolbar">
         <a href="index.html">Home</a>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2024 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2024">
                 <a href="2024FullBracket.html">Full Bracket</a>
                 <a href="2024PicksSorted.html">Picks Sorted</a>
                 <a href="2024Payouts.html">Payouts</a>
                 <a href="2024Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2023 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2023">
                 <a href="2023FullBracket.html">Full Bracket</a>
                 <a href="2023PicksSorted.html">Picks Sorted</a>
                 <a href="2023Payouts.html">Payouts</a>
                 <a href="2023Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2022 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2022')">2022 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2018 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2017 ▼</a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2017')">2017 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
             </div>
         </div>
     </div>
     <div class="container">
-        <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSUruBLuSgdHs4mu_BPh_qRg07ngRKyR04-wm7oddj3ZOARh3f7wKv-px14BU1kqowKJpqV7CGC-l0S/pubhtml?gid=1738849487&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
+        <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSUruBLuSgdHs4mu_BPh_qRg07ngRKyR04-wm7oddj3ZOARh3f7wKv-px14BU1kqowKJpqV7CGC-l0S/pubhtml?gid=788313377&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
     </div>
 
     <script>
@@ -118,7 +122,7 @@
                 iframe.style.height = (windowHeight - toolbarHeight) + 'px';
             }
         }
-        
+
         // Hide sheet tabs
         function hideSheetTabs() {
             var iframe = document.getElementById('embeddedSheet');
@@ -128,14 +132,36 @@
             }
         }
 
-        // Call the adjustIframeHeight function when the window is resized
+        // Toggle dropdown visibility
+        function toggleDropdown(dropdownId, show) {
+            var dropdownContent = document.getElementById(dropdownId);
+            dropdownContent.style.display = show ? 'block' : 'none';
+        }
+
+        // Collapse dropdowns when tapping outside on mobile devices
+        function collapseDropdownsOnMobile(event) {
+            if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+            }
+        }
+
+        // Handle dropdown click events
+        function handleDropdownClick(event, dropdownId) {
+            var dropdownContent = document.getElementById(dropdownId).querySelector('.dropdown-content');
+            toggleDropdown(dropdownContent.id, dropdownContent.style.display === 'none');
+            event.stopPropagation();
+        }
+
+        // Add event listeners
         window.addEventListener('resize', adjustIframeHeight);
-        
-        // Call the hideSheetTabs function after iframe content is loaded
         document.getElementById('embeddedSheet').addEventListener('load', function() {
             hideSheetTabs();
             adjustIframeHeight();
         });
+        document.body.addEventListener('click', collapseDropdownsOnMobile);
     </script>
 </body>
 </html>
