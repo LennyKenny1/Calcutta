@@ -40,13 +40,13 @@
             align-items: center; /* Center items vertically */
             margin: 0; /* Reset margin */
             flex-wrap: wrap; /* Wrap items if they exceed container width */
-            margin-bottom: -10px; /* Remove bottom margin */
-            width: 100vw; /* Take up entire width of the viewport */
+            width: 100%; /* Take up entire width of the container */
         }
         .toolbar .dropdown {
             position: relative;
             display: inline-block;
             margin-right: 15px; /* Reduce margin by 25% */
+            margin-bottom: 10px; /* Add space between dropdowns vertically */
         }
         .toolbar .dropdown-content {
             display: none;
@@ -92,7 +92,7 @@
         @media only screen and (max-width: 768px) {
             .toolbar {
                 flex-direction: column;
-                align-items: flex-start; /* Align items to start vertically */
+                align-items: center; /* Center items vertically */
             }
             .toolbar .dropdown {
                 margin-right: 0;
@@ -107,7 +107,6 @@
     </header>
     <div class="container">
         <div class="toolbar">
-            
             <div class="dropdown">
                 <a href="#" class="dropdown">2024 ▼</a>
                 <div class="dropdown-content">
