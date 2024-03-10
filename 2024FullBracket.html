@@ -60,11 +60,8 @@
             display: block;
         }
         /* Hide dropdown arrows on hover for mobile devices */
-        @media (min-width: 769px) {
-            .toolbar .dropdown:hover .dropdown-arrow {
-                display: inline-block;
-            }
-            .toolbar .dropdown-content {
+        @media (max-width: 768px) {
+            .dropdown-arrow {
                 display: none;
             }
         }
@@ -139,10 +136,10 @@
 
         // Collapse dropdowns when tapping outside on mobile devices
         function collapseDropdownsOnMobile(event) {
-            if (window.innerWidth <= 768 && event.target.closest('.dropdown') === null) {
-                var dropdowns = document.querySelectorAll('.dropdown-content');
-                dropdowns.forEach(function(dropdown) {
-                    dropdown.style.display = 'none';
+            if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
                 });
             }
         }
@@ -172,11 +169,26 @@
             adjustIframeHeight();
         });
         document.body.addEventListener('click', collapseDropdownsOnMobile);
-
-        // Add event listener for dropdown clicks
         var dropdownArrows = document.querySelectorAll('.dropdown-arrow');
         dropdownArrows.forEach(function(arrow) {
-            arrow.addEventListener('click', handleDropdownClick);
+            arrow.addEventListener('mouseenter', function() {
+                if (window.innerWidth > 768) {
+                    var dropdownContent = arrow.parentElement.nextElementSibling;
+                    dropdownContent.style.display = 'block';
+                }
+            });
+        });
+        var dropdownContents = document.querySelectorAll('.dropdown-content');
+        dropdownContents.forEach(function(content) {
+            content.addEventListener('mouseleave', function() {
+                if (window.innerWidth > 768) {
+                    content.style.display = 'none';
+                }
+            });
+        });
+        var dropdownOptions = document.querySelectorAll('.dropdown');
+        dropdownOptions.forEach(function(option) {
+            option.addEventListener('click', handleDropdownClick);
         });
     </script>
 </body>
