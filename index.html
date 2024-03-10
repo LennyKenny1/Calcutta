@@ -39,14 +39,12 @@
             justify-content: center; /* Center items horizontally */
             align-items: center; /* Center items vertically */
             margin: 0; /* Reset margin */
-            flex-wrap: wrap; /* Wrap items if they exceed container width */
-            width: 100%; /* Take up entire width of the viewport */
+            overflow-x: auto; /* Add horizontal scroll for small screens */
         }
         .toolbar .dropdown {
             position: relative;
             display: inline-block;
             margin-right: 15px; /* Reduce margin by 25% */
-            margin-bottom: 10px; /* Add space between dropdowns vertically */
         }
         .toolbar .dropdown-content {
             display: none;
@@ -55,7 +53,6 @@
             min-width: 150px; /* Increase width by 25% */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1;
-            left: 0; /* Position dropdown content to the left */
         }
         .toolbar .dropdown-content a {
             color: #009CDE; /* Updated color */
@@ -92,12 +89,11 @@
         /* Responsive adjustments */
         @media only screen and (max-width: 768px) {
             .toolbar {
-                flex-direction: column;
-                align-items: flex-start; /* Align items to start vertically */
+                flex-direction: row;
+                align-items: center; /* Center items vertically */
             }
             .toolbar .dropdown {
-                margin-right: 0;
-                margin-bottom: 10px; /* Add space between dropdowns vertically */
+                margin-right: 15px;
             }
         }
     </style>
