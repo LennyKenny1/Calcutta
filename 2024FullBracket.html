@@ -68,41 +68,41 @@
 <body>
     <div class="toolbar">
         <a href="index.html">Home</a>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2024 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2024">
+            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2024')">2024 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2024">
                 <a href="2024FullBracket.html">Full Bracket</a>
                 <a href="2024PicksSorted.html">Picks Sorted</a>
                 <a href="2024Payouts.html">Payouts</a>
                 <a href="2024Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2023 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2023">
+            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2023')">2023 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2023">
                 <a href="2023FullBracket.html">Full Bracket</a>
                 <a href="2023PicksSorted.html">Picks Sorted</a>
                 <a href="2023Payouts.html">Payouts</a>
                 <a href="2023Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2022 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2022">
+            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2022')">2022 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2018 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2018">
+            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2018')">2018 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <a href="#" class="dropdown">2017 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content">
+        <div class="dropdown" id="dropdown2017">
+            <a href="javascript:void(0)" class="dropdown" onclick="toggleDropdown('dropdownContent2017')">2017 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
             </div>
@@ -132,6 +132,12 @@
             }
         }
 
+        // Toggle dropdown visibility
+        function toggleDropdown(dropdownId) {
+            var dropdownContent = document.getElementById(dropdownId);
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
         // Collapse dropdowns when tapping outside on mobile devices
         function collapseDropdownsOnMobile(event) {
             if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
@@ -142,24 +148,6 @@
             }
         }
 
-        // Toggle dropdown visibility
-        function toggleDropdown(dropdownContent) {
-            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Collapse other dropdowns and toggle clicked dropdown
-        function handleDropdownClick(event) {
-            var dropdownContent = event.target.nextElementSibling;
-            var allDropdownContents = document.querySelectorAll('.dropdown-content');
-            allDropdownContents.forEach(function(content) {
-                if (content !== dropdownContent) {
-                    content.style.display = 'none';
-                }
-            });
-            toggleDropdown(dropdownContent);
-            event.stopPropagation();
-        }
-
         // Add event listeners
         window.addEventListener('resize', adjustIframeHeight);
         document.getElementById('embeddedSheet').addEventListener('load', function() {
@@ -167,10 +155,6 @@
             adjustIframeHeight();
         });
         document.body.addEventListener('click', collapseDropdownsOnMobile);
-        var dropdownOptions = document.querySelectorAll('.dropdown');
-        dropdownOptions.forEach(function(option) {
-            option.addEventListener('click', handleDropdownClick);
-        });
     </script>
 </body>
 </html>
