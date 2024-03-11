@@ -16,13 +16,11 @@
             margin: 0;
             padding: 0;
         }
-        .image-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
+        iframe {
+            width: 100%;
+            height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
+            border: none;
+            display: block;
         }
         .toolbar {
             background-color: #009CDE; /* NCAA blue background */
@@ -130,12 +128,7 @@
         </div>
     </div>
     <div class="container" onclick="collapseDropdownsOnMobile(event)">
-        <!-- Replace the iframe with the image -->
-        <div class="image-container">
-            <a href="NCAA_SCHEDULE_2023_DAY_1.pdf" target="_blank">
-                <img src="NCAA_SCHEDULE_2023_DAY_1.pdf" alt="NCAA Schedule 2023 Day 1">
-            </a>
-        </div>
+        <iframe id="embeddedSheet" src="https://lennykenny1.github.io/Calcutta/NCAA_SCHEDULE_2023_DAY_1.pdf"></iframe>
     </div>
 
     <script>
