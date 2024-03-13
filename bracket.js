@@ -1,5 +1,3 @@
-console.log("Bracket JavaScript file loaded.");
-
 // Function to create a team
 function createTeam(name, seed) {
     return {
