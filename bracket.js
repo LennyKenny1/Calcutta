@@ -1,3 +1,7 @@
+function generateBracket() {
+    console.log("Generating bracket..."); // Add this line
+    // Rest of the function code...
+}
 // Function to create a team
 function createTeam(name, seed) {
     return {
