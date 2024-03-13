@@ -1,4 +1,4 @@
-// script.js
+// SimulatorTest.js
 document.addEventListener('DOMContentLoaded', function () {
     var table = document.getElementById('data-table');
 
@@ -8,13 +8,25 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(text => {
             // Parse CSV data
             var rows = text.trim().split('\n').map(row => row.split(','));
-            
+
             // Populate table with CSV data
             rows.forEach(row => {
                 var tr = document.createElement('tr');
-                row.forEach(cell => {
+                row.forEach((cell, index) => {
                     var td = document.createElement('td');
-                    td.textContent = cell;
+                    if (index === COLUMN_INDEX_WITH_DROPDOWN) {
+                        // If it's the column with dropdown, create select element
+                        var select = document.createElement('select');
+                        var options = cell.split('|'); // Assuming dropdown options are separated by '|'
+                        options.forEach(option => {
+                            var optionElement = document.createElement('option');
+                            optionElement.textContent = option;
+                            select.appendChild(optionElement);
+                        });
+                        td.appendChild(select);
+                    } else {
+                        td.textContent = cell;
+                    }
                     tr.appendChild(td);
                 });
                 table.appendChild(tr);
