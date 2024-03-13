@@ -46,39 +46,25 @@
                 <h2>Top left of the Bracket (South)</h2>
                 <!-- Round 1 Matchups -->
                 <div class="matchup">
-                    <div class="team" id="team1">Team 1</div>
+                    <div class="team" id="game1">Game 1</div>
                     <div class="team" id="team16">Team 16</div>
                 </div>
+                <!-- Dropdown for Game 1 winner -->
                 <div class="matchup">
-                    <div class="team" id="team2">Team 2</div>
-                    <div class="team" id="team15">Team 15</div>
+                    <div class="team" id="game1_winner"></div>
                 </div>
+                <!-- Round 2 Matchups -->
                 <div class="matchup">
-                    <div class="team" id="team3">Team 3</div>
-                    <div class="team" id="team14">Team 14</div>
-                </div>
-                <div class="matchup">
-                    <div class="team" id="team4">Team 4</div>
-                    <div class="team" id="team13">Team 13</div>
-                </div>
-                <div class="matchup">
-                    <div class="team" id="team5">Team 5</div>
-                    <div class="team" id="team12">Team 12</div>
-                </div>
-                <div class="matchup">
-                    <div class="team" id="team6">Team 6</div>
-                    <div class="team" id="team11">Team 11</div>
-                </div>
-                <div class="matchup">
-                    <div class="team" id="team7">Team 7</div>
-                    <div class="team" id="team10">Team 10</div>
-                </div>
-                <div class="matchup">
+                    <div class="team" id="game2">Game 2</div>
                     <div class="team" id="team8">Team 8</div>
-                    <div class="team" id="team9">Team 9</div>
                 </div>
+                <!-- Dropdown for Game 2 winner -->
+                <div class="matchup">
+                    <div class="team" id="game2_winner"></div>
+                </div>
+                <!-- Add more matchups as needed -->
             </div>
-            <!-- Add more regions and matchups as needed -->
+            <!-- Add more regions as needed -->
         </div>
     </div>
 
@@ -90,25 +76,21 @@
 
         // Generate dropdowns for the second round matchups
         window.onload = function() {
-            var secondRoundMatchups = [
-                { winnerId: 'team1', loserId1: 'team1', loserId2: 'team16' },
-                { winnerId: 'team2', loserId1: 'team2', loserId2: 'team15' },
-                { winnerId: 'team3', loserId1: 'team3', loserId2: 'team14' },
-                { winnerId: 'team4', loserId1: 'team4', loserId2: 'team13' },
-                { winnerId: 'team5', loserId1: 'team5', loserId2: 'team12' },
-                { winnerId: 'team6', loserId1: 'team6', loserId2: 'team11' },
-                { winnerId: 'team7', loserId1: 'team7', loserId2: 'team10' },
-                { winnerId: 'team8', loserId1: 'team8', loserId2: 'team9' }
-            ];
+            // Dropdown for Game 1 winner
+            var dropdownGame1Winner = document.createElement('select');
+            dropdownGame1Winner.innerHTML = '<option value="team1">Select winner</option><option value="team16">Select winner</option>';
+            dropdownGame1Winner.onchange = function() {
+                document.getElementById('game1_winner').textContent = dropdownGame1Winner.value;
+            };
+            document.getElementById('game1_winner').appendChild(dropdownGame1Winner);
 
-            secondRoundMatchups.forEach(function(matchup) {
-                var dropdown = document.createElement('select');
-                dropdown.innerHTML = '<option value="' + matchup.loserId1 + '">Select winner</option><option value="' + matchup.loserId2 + '">Select winner</option>';
-                dropdown.onchange = function() {
-                    selectSecondRoundWinner(matchup.winnerId, dropdown.value);
-                };
-                document.getElementById(matchup.winnerId).appendChild(dropdown);
-            });
+            // Dropdown for Game 2 winner
+            var dropdownGame2Winner = document.createElement('select');
+            dropdownGame2Winner.innerHTML = '<option value="team8">Select winner</option><option value="team9">Select winner</option>';
+            dropdownGame2Winner.onchange = function() {
+                document.getElementById('game2_winner').textContent = dropdownGame2Winner.value;
+            };
+            document.getElementById('game2_winner').appendChild(dropdownGame2Winner);
         };
     </script>
 </body>
