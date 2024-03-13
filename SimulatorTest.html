@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>64 Team Bracket</title>
-</head>
-<body>
     <script>
         // Function to create a team
         function createTeam(name, seed) {
@@ -26,53 +24,32 @@
         }
 
         // Function to generate teams for a region
-        function generateRegion(regionName, teamsData) {
-            const regionTeams = teamsData.map(team => createTeam(team[0], team[1]));
+        function generateRegion(regionName) {
+            const regionTeams = [];
+            for (let i = 1; i <= 16; i++) {
+                regionTeams.push(createTeam(regionName + ' Team ' + i, i));
+            }
             return regionTeams;
         }
 
         // Function to generate the bracket
         function generateBracket() {
-            const bracket = {
-                South: { Round1: generateMatchups(generateRegion('South', [
-                    ['Alabama', 1], ['A&M-Corpus Christi', 16], ['Maryland', 8], ['West Virginia', 9],
-                    ['San Diego St', 5], ['Col of Charleston', 12], ['Virginia', 4], ['Furman', 13],
-                    ['Creighton', 6], ['NC State', 11], ['Baylor', 3], ['UC Santa Barbara', 14],
-                    ['Missouri', 7], ['Utah St', 10], ['Arizona', 2], ['Princeton', 15]
-                ])) },
-                East: { Round1: generateMatchups(generateRegion('East', [
-                    ['Purdue', 1], ['FDU', 16], ['Memphis', 8], ['Fla Atlantic', 9],
-                    ['Duke', 5], ['Oral Roberts', 12], ['Tennessee', 4], ['Louisiana', 13],
-                    ['Kentucky', 6], ['Providence', 11], ['Kansas St', 3], ['Montana St', 14],
-                    ['Michigan St', 7], ['Southern California', 10], ['Marquette', 2], ['Vermont', 15]
-                ])) },
-                Midwest: { Round1: generateMatchups(generateRegion('Midwest', [
-                    ['Houston', 1], ['Northern Ky', 16], ['Iowa', 8], ['Auburn', 9],
-                    ['Miami (FL)', 5], ['Drake', 12], ['Indiana', 4], ['Kent St', 13],
-                    ['Iowa St', 6], ['Pittsburgh', 11], ['Xavier', 3], ['Kennesaw St', 14],
-                    ['Texas A&M', 7], ['Penn St', 10], ['Texas', 2], ['Colgate', 15]
-                ])) },
-                West: { Round1: generateMatchups(generateRegion('West', [
-                    ['Kansas', 1], ['Howard', 16], ['Arkansas', 8], ['Illinois', 9],
-                    ['Saint Mary\'s (CA)', 5], ['VCU', 12], ['UConn', 4], ['Iona', 13],
-                    ['TCU', 6], ['Arizona St', 11], ['Gonzaga', 3], ['Grand Canyon', 14],
-                    ['Northwestern', 7], ['Boise St', 10], ['UCLA', 2], ['UNC Asheville', 15]
-                ])) }
-            };
-            return bracket;
-        }
-
-        // Generate the bracket
-        const bracket = generateBracket();
-
-        // Function to display the bracket
-        function displayBracket() {
-            // Replace this with your desired way of displaying the bracket
+            const regions = ['East', 'West', 'South', 'Midwest'];
+            const bracket = {};
+            for (let i = 0; i < regions.length; i++) {
+                const regionName = regions[i];
+                const regionTeams = generateRegion(regionName);
+                bracket[regionName] = { Round1: generateMatchups(regionTeams) };
+            }
+            // Log the bracket object to the console
             console.log(bracket);
         }
 
-        // Call the function to display the bracket
-        displayBracket();
+        // Call the generateBracket() function when the page loads
+        window.onload = generateBracket;
     </script>
+</head>
+<body>
+    <!-- No button needed -->
 </body>
 </html>
