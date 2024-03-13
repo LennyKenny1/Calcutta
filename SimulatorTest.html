@@ -2,40 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>64-Team Bracket</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheet Data</title>
+    <link rel="stylesheet" href="SimulatorTest.css">
 </head>
 <body>
-    <h1>64-Team Bracket</h1>
-    <form id="bracket-form">
-        <ul id="bracket">
-            <!-- Each match with dropdowns -->
-            <li>
-                <select class="match-dropdown">
-                    <option value="">Select Winner</option>
-                    <!-- Options for team selection -->
-                    <option value="Team 1">Team 1</option>
-                    <option value="Team 2">Team 2</option>
-                </select>
-            </li>
-            <!-- Repeat this block for each match -->
-        </ul>
-        <button type="submit">Submit</button>
-    </form>
-    <script>
-        // Add JavaScript code here to handle form submission and processing
-        $(document).ready(function () {
-            // Example JavaScript code to handle form submission
-            $('#bracket-form').submit(function (e) {
-                e.preventDefault();
-                var results = [];
-                $('.match-dropdown').each(function () {
-                    var winner = $(this).val();
-                    results.push(winner);
-                });
-                console.log(results); // You can send these results to a server for processing
-            });
-        });
-    </script>
+    <table id="data-table">
+        <!-- CSV data will be inserted here -->
+    </table>
+
+    <script src="SimulatorTest.js"></script>
 </body>
 </html>
