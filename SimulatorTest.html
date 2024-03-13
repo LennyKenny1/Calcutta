@@ -25,6 +25,29 @@
         .team {
             flex: 1;
         }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: #000;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
         h1 {
             margin: 0;
             padding: 20px 0;
@@ -40,38 +63,70 @@
         <!-- Your existing toolbar code here -->
     </div>
     <div class="container">
-        <!-- Dynamically generate the bracket -->
+        <!-- Round 2 matchups with dropdown options -->
         <div class="matchup">
-            <div class="team">Team 1</div>
-            <div class="team">Team 16</div>
+            <div class="team dropdown">
+                Winner of Team 1 vs. Team 16
+                <div class="dropdown-content">
+                    <a href="#">Team 1</a>
+                    <a href="#">Team 16</a>
+                </div>
+            </div>
+            <div class="team dropdown">
+                Winner of Team 8 vs. Team 9
+                <div class="dropdown-content">
+                    <a href="#">Team 8</a>
+                    <a href="#">Team 9</a>
+                </div>
+            </div>
         </div>
         <div class="matchup">
-            <div class="team">Team 8</div>
-            <div class="team">Team 9</div>
+            <div class="team dropdown">
+                Winner of Team 5 vs. Team 12
+                <div class="dropdown-content">
+                    <a href="#">Team 5</a>
+                    <a href="#">Team 12</a>
+                </div>
+            </div>
+            <div class="team dropdown">
+                Winner of Team 4 vs. Team 13
+                <div class="dropdown-content">
+                    <a href="#">Team 4</a>
+                    <a href="#">Team 13</a>
+                </div>
+            </div>
         </div>
         <div class="matchup">
-            <div class="team">Team 5</div>
-            <div class="team">Team 12</div>
+            <div class="team dropdown">
+                Winner of Team 6 vs. Team 11
+                <div class="dropdown-content">
+                    <a href="#">Team 6</a>
+                    <a href="#">Team 11</a>
+                </div>
+            </div>
+            <div class="team dropdown">
+                Winner of Team 3 vs. Team 14
+                <div class="dropdown-content">
+                    <a href="#">Team 3</a>
+                    <a href="#">Team 14</a>
+                </div>
+            </div>
         </div>
         <div class="matchup">
-            <div class="team">Team 4</div>
-            <div class="team">Team 13</div>
-        </div>
-        <div class="matchup">
-            <div class="team">Team 6</div>
-            <div class="team">Team 11</div>
-        </div>
-        <div class="matchup">
-            <div class="team">Team 3</div>
-            <div class="team">Team 14</div>
-        </div>
-        <div class="matchup">
-            <div class="team">Team 7</div>
-            <div class="team">Team 10</div>
-        </div>
-        <div class="matchup">
-            <div class="team">Team 2</div>
-            <div class="team">Team 15</div>
+            <div class="team dropdown">
+                Winner of Team 7 vs. Team 10
+                <div class="dropdown-content">
+                    <a href="#">Team 7</a>
+                    <a href="#">Team 10</a>
+                </div>
+            </div>
+            <div class="team dropdown">
+                Winner of Team 2 vs. Team 15
+                <div class="dropdown-content">
+                    <a href="#">Team 2</a>
+                    <a href="#">Team 15</a>
+                </div>
+            </div>
         </div>
     </div>
 
