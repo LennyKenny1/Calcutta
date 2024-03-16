@@ -8,7 +8,21 @@
 </head>
 <body>
     <!-- Include the template HTML -->
+    <div id="templateContainer"></div>
     <script src="common.js"></script>
-    <iframe id="embeddedSheet" src="https://www.ncaa.com/march-madness-live/bracket"></iframe>
+    <script>
+        // Load the template HTML content
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("templateContainer").innerHTML = this.responseText;
+                // Replace the link in the iframe
+                var iframeSrc = "https://www.ncaa.com/march-madness-live/bracket"; // Replace with the appropriate link
+                document.getElementById("embeddedSheet").src = iframeSrc;
+            }
+        };
+        xhr.open("GET", "template.html", true);
+        xhr.send();
+    </script>
 </body>
 </html>
