@@ -15,11 +15,10 @@
             max-width: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Add overflow hidden to prevent scroll bars */
         }
         iframe {
             width: 100%;
-            height: 100vh; /* Adjust the height based on the viewport height */
+            height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
             border: none;
             display: block;
         }
@@ -113,16 +112,17 @@
             <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022FullBracket.html">Full Bracket</a>
                 <a href="2022PicksSorted.html">Picks Sorted</a>
-                <a href="2022Payouts.html">Payouts</a>
+		<a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
+
             </div>
         </div>
-       <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
+        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
             <a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018FullBracket.html">Full Bracket</a>
                 <a href="2018PicksSorted.html">Picks Sorted</a>
-                <a href="2018Payouts.html">Payouts</a>
+		<a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
@@ -131,18 +131,8 @@
             <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017FullBracket.html">Full Bracket</a>
                 <a href="2017PicksSorted.html">Picks Sorted</a>
-                <a href="2017Payouts.html">Payouts</a>
+		<a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
-            </div>
-        </div>
-
- <div class="dropdown" id="dropdown2016" onmouseover="toggleDropdown('dropdownContent2016', true)" onmouseout="toggleDropdown('dropdownContent2016', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2016')">2016 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2016">
-                <a href="2016FullBracket.html">Full Bracket</a>
-                <a href="2016PicksSorted.html">Picks Sorted</a>
-                <a href="2016Payouts.html">Payouts</a>
-                <a href="2016Picks.html">Picks</a>
             </div>
         </div>
     </div>
