@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>March Madness Calcutta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
+            border: none;
+            display: block;
+        }
+        .toolbar {
+            background-color: #009CDE; /* NCAA blue background */
+            color: #fff;
+            padding: 10px 0; /* Updated padding */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the toolbar */
+        }
+        .toolbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px; /* Add margin to create space between links */
+            font-weight: bold;
+            position: relative;
+            display: inline-block; /* Display links inline */
+        }
+        .toolbar .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .toolbar .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .toolbar .dropdown-content a {
+            color: #009CDE; /* Updated color */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .toolbar .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .toolbar .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Show dropdown arrows */
+        .dropdown-arrow {
+            display: inline-block;
+        }
+        h1 {
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+            background-color: #009CDE;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<h1>March Madness Calcutta</h1>
+    <div class="toolbar">
+        <a href="index.html">Home</a>
+        <div class="dropdown" id="dropdownTVSchedule" onmouseover="toggleDropdown('dropdownContentTVSchedule', true)" onmouseout="toggleDropdown('dropdownContentTVSchedule', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdownTVSchedule')">TV Schedule <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContentTVSchedule">
+                <a href="TVScheduleThursday.html">R1 Thursday</a>
+                <a href="TVScheduleFriday.html">R1 Friday</a>
+                <a href="TVScheduleSaturday.html">R2 Saturday</a>
+                <a href="TVScheduleSunday.html">R2 Sunday</a>
+                <a href="TVScheduleSweet16.html">Sweet 16</a>
+                <a href="TVScheduleElite8.html">Elite 8</a>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2024">
+                <a href="2024FullBracket.html">Full Bracket</a>
+                <a href="2024PicksSorted.html">Picks Sorted</a>
+                <a href="2024Payouts.html">Payouts</a>
+                <a href="2024Picks.html">Picks</a>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2023">
+                <a href="2023FullBracket.html">Full Bracket</a>
+                <a href="2023PicksSorted.html">Picks Sorted</a>
+                <a href="2023Payouts.html">Payouts</a>
+                <a href="2023Picks.html">Picks</a>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2022')">2022 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2022">
+                <a href="2022FullBracket.html">Full Bracket</a>
+                <a href="2022PicksSorted.html">Picks Sorted</a>
+		<a href="2022Payouts.html">Payouts</a>
+                <a href="2022Picks.html">Picks</a>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2018">
+                <a href="2018FullBracket.html">Full Bracket</a>
+                <a href="2018PicksSorted.html">Picks Sorted</a>
+		<a href="2018Payouts.html">Payouts</a>
+                <a href="2018Picks.html">Picks</a>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2017')">2017 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2017">
+                <a href="2017FullBracket.html">Full Bracket</a>
+                <a href="2017PicksSorted.html">Picks Sorted</a>
+		<a href="2017Payouts.html">Payouts</a>
+                <a href="2017Picks.html">Picks</a>
+            </div>
+        </div>
+    </div>
+<div>
+  <h2>Scenario Generator:</h2>
+</div>
+<select id="matchupDropdown" onchange="updateTable()">
+  <option value="">Select a matchup</option>
+  <option value="UConn_Alabama_Purdue_Duke">UConn (Elia) / Alabama (Jon) / Purdue (Jon) / Duke (Lance)</option>
+  <option value="UConn_Alabama_Purdue_NC State">UConn (Elia) / Alabama (Jon) / Purdue (Jon) / NC State (Elia)</option>
+  <option value="UConn_Alabama_Tennessee_Duke">UConn (Elia) / Alabama (Jon) / Tennessee (Ron) / Duke (Lance)</option>
+  <option value="UConn_Alabama_Tennessee_NC State">UConn (Elia) / Alabama (Jon) / Tennessee (Ron) / NC State (Elia)</option>
+  <option value="UConn_Clemson_Purdue_Duke">UConn (Elia) / Clemson (Lance) / Purdue (Jon) / Duke (Lance)</option>
+  <option value="UConn_Clemson_Purdue_NC State">UConn (Elia) / Clemson (Lance) / Purdue (Jon) / NC State (Elia)</option>
+  <option value="UConn_Clemson_Tennessee_Duke">UConn (Elia) / Clemson (Lance) / Tennessee (Ron) / Duke (Lance)</option>
+  <option value="UConn_Clemson_Tennessee_NC State">UConn (Elia) / Clemson (Lance) / Tennessee (Ron) / NC State (Elia)</option>
+  <option value="Illinois_Alabama_Purdue_Duke">Illinois (Trevor) / Alabama (Jon) / Purdue (Jon) / Duke (Lance)</option>
+  <option value="Illinois_Alabama_Purdue_NC State">Illinois (Trevor) / Alabama (Jon) / Purdue (Jon) / NC State (Elia)</option>
+  <option value="Illinois_Alabama_Tennessee_Duke">Illinois (Trevor) / Alabama (Jon) / Tennessee (Ron) / Duke (Lance)</option>
+  <option value="Illinois_Alabama_Tennessee_NC State">Illinois (Trevor) / Alabama (Jon) / Tennessee (Ron) / NC State (Elia)</option>
+  <option value="Illinois_Clemson_Purdue_Duke">Illinois (Trevor) / Clemson (Lance) / Purdue (Jon) / Duke (Lance)</option>
+  <option value="Illinois_Clemson_Purdue_NC State">Illinois (Trevor) / Clemson (Lance) / Purdue (Jon) / NC State (Elia)</option>
+  <option value="Illinois_Clemson_Tennessee_Duke">Illinois (Trevor) / Clemson (Lance) / Tennessee (Ron) / Duke (Lance)</option>
+  <option value="Illinois_Clemson_Tennessee_NC State">Illinois (Trevor) / Clemson (Lance) / Tennessee (Ron) / NC State (Elia)</option>
+</select>
+
+<table id="dataTable">
+  <!-- Table data will be inserted here -->
+</table>
+
+<script>
+  var data = {
+    "UConn_Alabama_Purdue_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Jon", "$8,620.00", "$9,395.07", "$775.07", "7", "8", "5", "2", "9%"],
+    ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "UConn_Alabama_Purdue_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$15,413.79", "$463.79", "16", "17", "14", "2", "3%"],
+    ["Jon", "$8,620.00", "$9,395.07", "$775.07", "7", "8", "5", "2", "9%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"],
+    ["Lance", "$4,760.00", "$6,899.51", "$2,139.51", "11", "9", "11", "0", "45%"]
+    ],
+    "UConn_Alabama_Tennessee_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "UConn_Alabama_Tennessee_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$15,413.79", "$463.79", "16", "17", "14", "2", "3%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"],
+    ["Lance", "$4,760.00", "$6,899.51", "$2,139.51", "11", "9", "11", "0", "45%"]
+    ],
+    "UConn_Clemson_Purdue_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Lance", "$4,760.00", "$11,597.04", "$6,837.04", "11", "11", "9", "2", "144%"],
+    ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "UConn_Clemson_Purdue_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$15,413.79", "$463.79", "16", "17", "14", "2", "3%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "UConn_Clemson_Tennessee_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Lance", "$4,760.00", "$11,597.04", "$6,837.04", "11", "11", "9", "2", "144%"],
+    ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Jon", "$8,620.00", "$4,697.54", "-$3,922.46", "7", "6", "7", "0", "-46%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "UConn_Clemson_Tennessee_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$15,413.79", "$463.79", "16", "17", "14", "2", "3%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Jon", "$8,620.00", "$4,697.54", "-$3,922.46", "7", "6", "7", "0", "-46%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Trevor", "$4,905.00", "$4,550.74", "-$354.26", "6", "6", "6", "0", "-7%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "Illinois_Alabama_Purdue_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Jon", "$8,620.00", "$9,395.07", "$775.07", "7", "8", "5", "2", "9%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Elia", "$14,950.00", "$10,716.25", "-$4,233.75", "16", "15", "16", "0", "-28%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "Illinois_Alabama_Purdue_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Jon", "$8,620.00", "$9,395.07", "$775.07", "7", "8", "5", "2", "9%"],
+    ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"],
+    ["Lance", "$4,760.00", "$6,899.51", "$2,139.51", "11", "9", "11", "0", "45%"]
+    ],
+    "Illinois_Alabama_Tennessee_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Elia", "$14,950.00", "$10,716.25", "-$4,233.75", "16", "15", "16", "0", "-28%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "Illinois_Alabama_Tennessee_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"],
+    ["Lance", "$4,760.00", "$6,899.51", "$2,139.51", "11", "9", "11", "0", "45%"]
+    ],
+    "Illinois_Clemson_Purdue_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Lance", "$4,760.00", "$11,597.04", "$6,837.04", "11", "11", "9", "2", "144%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Elia", "$14,950.00", "$10,716.25", "-$4,233.75", "16", "15", "16", "0", "-28%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "Illinois_Clemson_Purdue_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Jon", "$8,620.00", "$7,046.30", "-$1,573.70", "7", "7", "6", "1", "-18%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Ron", "$5,060.00", "$4,257.14", "-$802.86", "3", "6", "3", "0", "-16%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "Illinois_Clemson_Tennessee_Duke": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Lance", "$4,760.00", "$11,597.04", "$6,837.04", "11", "11", "9", "2", "144%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Elia", "$14,950.00", "$10,716.25", "-$4,233.75", "16", "15", "16", "0", "-28%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Jon", "$8,620.00", "$4,697.54", "-$3,922.46", "7", "6", "7", "0", "-46%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+    ],
+    "Illinois_Clemson_Tennessee_NC State": [
+      ["Owner", "Spent", "Payout", "Profit", "Total Teams", "Wins", "Teams Eliminated", "Teams Remaining", "% ROI"],
+      ["Elia", "$14,950.00", "$13,065.02", "-$1,884.98", "16", "16", "15", "1", "-13%"],
+    ["Ron", "$5,060.00", "$6,605.91", "$1,545.91", "3", "7", "2", "1", "31%"],
+    ["Trevor", "$4,905.00", "$6,899.51", "$1,994.51", "6", "7", "5", "1", "41%"],
+    ["Lance", "$4,760.00", "$9,248.27", "$4,488.27", "11", "10", "10", "1", "94%"],
+    ["Brandon", "$8,390.00", "$3,523.15", "-$4,866.85", "4", "6", "4", "0", "-58%"],
+    ["Sean", "$5,969.20", "$1,908.37", "-$4,060.83", "3", "3", "3", "0", "-68%"],
+    ["Jon", "$8,620.00", "$4,697.54", "-$3,922.46", "7", "6", "7", "0", "-46%"],
+    ["Brad", "$1,415.00", "$0.00", "-$1,415.00", "5", "0", "5", "0", "-100%"],
+    ["Abel", "$700.00", "$0.00", "-$700.00", "4", "0", "4", "0", "-100%"],
+    ["Mike", "$700.00", "$0.00", "-$700.00", "1", "0", "1", "0", "-100%"],
+    ["Darren", "$3,250.00", "$3,376.35", "$126.35", "4", "5", "4", "0", "4%"]
+]
+    // Add data for other matchups similarly
+  };
+
+  function updateTable() {
+    var selectedMatchup = document.getElementById("matchupDropdown").value;
+    var tableData = data[selectedMatchup];
+    var table = document.getElementById("dataTable");
+    table.innerHTML = ""; // Clear previous table content
+    for (var i = 0; i < tableData.length; i++) {
+      var row = table.insertRow();
+      for (var j = 0; j < tableData[i].length; j++) {
+        var cell = row.insertCell();
+        cell.innerHTML = tableData[i][j];
+        if (j === 3) { // Column index for "Profit"
+          var profit = parseFloat(tableData[i][j].replace('$', '').replace(',', ''));
+          if (profit < 0) {
+            cell.style.color = "#ff0000"; // Less than 0
+          } else if (profit > 0) {
+            cell.style.backgroundColor = "#b7e1cd"; // Greater than 0
+          }
+        } else if (j === 8) { // Column index for "% ROI"
+          var roi = parseFloat(tableData[i][j].replace('%', ''));
+          if (roi < 0) {
+            cell.style.backgroundColor = "#f4c7c3"; // Less than 0
+          } else if (roi > 0) {
+            cell.style.backgroundColor = "#b7e1cd"; // Greater than 0
+          }
+        }
+      }
+    }
+  }
+ // Adjust the height of the iframe based on the viewport height minus toolbar height
+        function adjustIframeHeight() {
+            var toolbarHeight = document.querySelector('.toolbar').offsetHeight;
+            var iframe = document.querySelector('iframe');
+            if (iframe) {
+                var windowHeight = window.innerHeight;
+                iframe.style.height = (windowHeight - toolbarHeight) + 'px';
+            }
+        }
+
+        // Hide sheet tabs
+        function hideSheetTabs() {
+            var iframe = document.getElementById('embeddedSheet');
+            var sheetTabsContainer = iframe.contentDocument.querySelector('.docs-sheet-tab-area');
+            if (sheetTabsContainer) {
+                sheetTabsContainer.style.display = 'none';
+            }
+        }
+
+        // Toggle dropdown visibility
+        function toggleDropdown(dropdownId, show) {
+            var dropdownContent = document.getElementById(dropdownId);
+            dropdownContent.style.display = show ? 'block' : 'none';
+        }
+
+        // Collapse dropdowns when tapping outside on mobile devices or clicking inside the embedded sheet
+        function collapseDropdownsOnMobile(event) {
+            if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+            }
+            if (window.innerWidth <= 768 && event.target.closest('#embeddedSheet')) {
+                var dropdownContents = document.querySelectorAll('.dropdown-content');
+                dropdownContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+            }
+        }
+
+        // Handle dropdown click events
+        function handleDropdownClick(event, dropdownId) {
+            var dropdownContent = document.getElementById(dropdownId).querySelector('.dropdown-content');
+            toggleDropdown(dropdownContent.id, dropdownContent.style.display === 'none');
+            event.stopPropagation();
+        }
+
+        // Add event listeners
+        window.addEventListener('resize', adjustIframeHeight);
+        document.getElementById('embeddedSheet').addEventListener('load', function() {
+            hideSheetTabs();
+            adjustIframeHeight();
+        });
+</script>
+
+</body>
+</html>
