@@ -77,12 +77,14 @@
             display: inline-block;
         }
         h1 {
-            margin: 0;
-            padding: 20px 0;
-            text-align: center;
-            background-color: #009CDE;
-            color: #fff;
-        }
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #009CDE;
+    color: #fff;
+    position: relative; /* Add position relative */
+    z-index: 1001; /* Set higher z-index to appear above the toolbar */
+}
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
