@@ -23,44 +23,55 @@
             display: block;
         }
         .toolbar {
-            background-color: #009CDE; /* NCAA blue background */
-            color: #fff;
-            padding: 10px 0; /* Updated padding */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center the toolbar */
-        }
-        .toolbar a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px; /* Add margin to create space between links */
-            font-weight: bold;
-            position: relative;
-            display: inline-block; /* Display links inline */
-        }
-        .toolbar .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .toolbar .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-        }
-        .toolbar .dropdown-content a {
-            color: #009CDE; /* Updated color */
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .toolbar .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        .toolbar .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    background-color: #009CDE; /* NCAA blue background */
+    color: #fff;
+    padding: 10px 0; /* Updated padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center the toolbar */
+    width: 100%; /* Extend toolbar to full width of the page */
+    position: fixed; /* Fixed position so that it stays at the top */
+    top: 0; /* Position at the top of the page */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.toolbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px; /* Add margin to create space between links */
+    font-weight: bold;
+}
+
+.toolbar .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.toolbar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    left: 0; /* Ensure dropdowns start from the left edge of the toolbar */
+}
+
+.toolbar .dropdown-content a {
+    color: #009CDE; /* Updated color */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.toolbar .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.toolbar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
         /* Show dropdown arrows */
         .dropdown-arrow {
             display: inline-block;
