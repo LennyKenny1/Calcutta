@@ -15,12 +15,8 @@
             max-width: 100%;
             margin: 0;
             padding: 0;
-        }
-        iframe {
-            width: 100%;
-            height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
-            border: none;
-            display: block;
+            text-align: center;
+            padding-top: 50px; /* Add padding to align countdown in the center */
         }
         .toolbar {
             background-color: #009CDE; /* NCAA blue background */
@@ -72,6 +68,11 @@
             background-color: #009CDE;
             color: #fff;
         }
+        #countdown {
+            font-size: 36px;
+            color: #009CDE;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -88,7 +89,7 @@
                 <a href="TVScheduleSunday.html">R2 Sunday</a>
                 <a href="TVScheduleSweet16.html">Sweet 16</a>
                 <a href="TVScheduleElite8.html">Elite 8</a>
-		<a href="TVScheduleFinal4.html">Final 4</a>
+                <a href="TVScheduleFinal4.html">Final 4</a>
             </div>
         </div>
         <div class="dropdown" id="dropdown2025" onmouseover="toggleDropdown('dropdownContent2025', true)" onmouseout="toggleDropdown('dropdownContent2025', false)">
@@ -98,7 +99,7 @@
                 <a href="2025PicksSorted.html">Picks Sorted</a>
                 <a href="2025Payouts.html">Payouts</a>
                 <a href="2025Picks.html">Picks</a>
-		<a href="2025TVSchedule.html">TV Schedule</a>
+                <a href="2025TVSchedule.html">TV Schedule</a>
             </div>
         </div>
         <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
@@ -108,10 +109,10 @@
                 <a href="2024PicksSorted.html">Picks Sorted</a>
                 <a href="2024Payouts.html">Payouts</a>
                 <a href="2024Picks.html">Picks</a>
-		<a href="2024TVSchedule.html">TV Schedule</a>
+                <a href="2024TVSchedule.html">TV Schedule</a>
             </div>
-        </div>		
-	<div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
+        </div>        
+        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
             <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2023">
                 <a href="2023FullBracket.html">Full Bracket</a>
@@ -125,9 +126,8 @@
             <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022FullBracket.html">Full Bracket</a>
                 <a href="2022PicksSorted.html">Picks Sorted</a>
-		<a href="2022Payouts.html">Payouts</a>
+                <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
-
             </div>
         </div>
         <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
@@ -135,7 +135,7 @@
             <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018FullBracket.html">Full Bracket</a>
                 <a href="2018PicksSorted.html">Picks Sorted</a>
-		<a href="2018Payouts.html">Payouts</a>
+                <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
@@ -144,70 +144,41 @@
             <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017FullBracket.html">Full Bracket</a>
                 <a href="2017PicksSorted.html">Picks Sorted</a>
-		<a href="2017Payouts.html">Payouts</a>
+                <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
             </div>
         </div>
     </div>
-    <div class="container" onclick="collapseDropdownsOnMobile(event)">
-        <iframe id="embeddedSheet" src="https://www.ncaa.com/march-madness-live/bracket"></iframe>
+
+    <div class="container" id="countdownContainer">
+        <h2>Time Until March Madness:</h2>
+        <div id="countdown"></div>
     </div>
 
     <script>
-        // Adjust the height of the iframe based on the viewport height minus toolbar height
-        function adjustIframeHeight() {
-            var toolbarHeight = document.querySelector('.toolbar').offsetHeight;
-            var iframe = document.querySelector('iframe');
-            if (iframe) {
-                var windowHeight = window.innerHeight;
-                iframe.style.height = (windowHeight - toolbarHeight) + 'px';
+        // Set the target date (March 16, 6pm EST)
+        var targetDate = new Date('March 16, 2025 18:00:00 EST').getTime();
+
+        // Update the countdown every second
+        var countdownInterval = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = targetDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "The event has started!";
             }
-        }
-
-        // Hide sheet tabs
-        function hideSheetTabs() {
-            var iframe = document.getElementById('embeddedSheet');
-            var sheetTabsContainer = iframe.contentDocument.querySelector('.docs-sheet-tab-area');
-            if (sheetTabsContainer) {
-                sheetTabsContainer.style.display = 'none';
-            }
-        }
-
-        // Toggle dropdown visibility
-        function toggleDropdown(dropdownId, show) {
-            var dropdownContent = document.getElementById(dropdownId);
-            dropdownContent.style.display = show ? 'block' : 'none';
-        }
-
-        // Collapse dropdowns when tapping outside on mobile devices or clicking inside the embedded sheet
-        function collapseDropdownsOnMobile(event) {
-            if (window.innerWidth <= 768 && !event.target.closest('.dropdown')) {
-                var dropdownContents = document.querySelectorAll('.dropdown-content');
-                dropdownContents.forEach(function(content) {
-                    content.style.display = 'none';
-                });
-            }
-            if (window.innerWidth <= 768 && event.target.closest('#embeddedSheet')) {
-                var dropdownContents = document.querySelectorAll('.dropdown-content');
-                dropdownContents.forEach(function(content) {
-                    content.style.display = 'none';
-                });
-            }
-        }
-
-        // Handle dropdown click events
-        function handleDropdownClick(event, dropdownId) {
-            var dropdownContent = document.getElementById(dropdownId).querySelector('.dropdown-content');
-            toggleDropdown(dropdownContent.id, dropdownContent.style.display === 'none');
-            event.stopPropagation();
-        }
-
-        // Add event listeners
-        window.addEventListener('resize', adjustIframeHeight);
-        document.getElementById('embeddedSheet').addEventListener('load', function() {
-            hideSheetTabs();
-            adjustIframeHeight();
-        });
+        }, 1000);
     </script>
 </body>
 </html>
