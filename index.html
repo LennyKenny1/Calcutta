@@ -107,9 +107,9 @@
                 <a href="2024PicksSorted.html">Picks Sorted</a>
                 <a href="2024Payouts.html">Payouts</a>
                 <a href="2024Picks.html">Picks</a>
-		 <div class="dropdown sub-dropdown">
-            <a href="#">TV Schedule<span class="dropdown-arrow">▶</span></a>
-            <div class="dropdown-content sub-dropdown-content">
+        <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
+            <a href="#" onclick="handleDropdownClick(event, 'dropdown2024')">2024 <span class="dropdown-arrow">▼</span></a>
+            <div class="dropdown-content" id="dropdownContent2024">
                 <a href="TVScheduleThursday.html">R1 Thursday</a>
                 <a href="TVScheduleFriday.html">R1 Friday</a>
 		<a href="TVScheduleSaturday.html">R2 Saturday</a>
