@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login with Email and Password</h1>
+
+    <!-- Input fields for email and password -->
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    
+    <!-- Buttons for login and signup -->
+    <button id="loginBtn">Login</button>
+    <button id="signupBtn">Sign Up</button>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Import the functions you need from the SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDzb2_okso5Fg2bt7D7-96MXj6O5BNfPq8",
+            authDomain: "calcutta-f09b4.firebaseapp.com",
+            projectId: "calcutta-f09b4",
+            storageBucket: "calcutta-f09b4.firebasestorage.app",
+            messagingSenderId: "374280500907",
+            appId: "1:374280500907:web:553d9539006a205d5fa9ee"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Handle login
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Successfully logged in
+                    console.log('Logged in:', userCredential.user);
+                })
+                .catch((error) => {
+                    console.error('Error logging in:', error);
+                });
+        });
+
+        // Handle sign-up
+        const signupBtn = document.getElementById('signupBtn');
+        signupBtn.addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Successfully signed up
+                    console.log('Signed up:', userCredential.user);
+                })
+                .catch((error) => {
+                    console.error('Error signing up:', error);
+                });
+        });
+    </script>
+</body>
+</html>
