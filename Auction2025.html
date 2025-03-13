@@ -4,61 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>March Madness Auction</title>
-    <script>
-        const scriptURL = "https://script.google.com/macros/s/AKfycbwiM3Sszf3lR1_iTBV1bv70Ovc5VxL7R80wqlLMqKxAAQLMDLSM9z5oD_is1AT72cElsA/exec";
-        let teams = ["Team 1", "Team 2", "Team 3", "Team 4", /* Add all 64 teams */];
-        let currentIndex = 0;
-        let userName = "";
-
-        function shuffleTeams() {
-            teams.sort(() => Math.random() - 0.5);
-        }
-
-        function setUserName() {
-            userName = prompt("Enter your name to start bidding:");
-            if (!userName) {
-                alert("You must enter a name!");
-                setUserName();
-            }
-        }
-
-        function loadTeam() {
-            if (currentIndex >= teams.length) {
-                document.getElementById("auction-area").innerHTML = "Auction complete!";
-                return;
-            }
-            document.getElementById("team-name").innerText = teams[currentIndex];
-        }
-
-        function placeBid() {
-            let bidAmount = prompt("Enter your bid amount:");
-            if (!bidAmount || isNaN(bidAmount)) {
-                alert("Please enter a valid number.");
-                return;
-            }
-            fetch(scriptURL + "?team=" + encodeURIComponent(teams[currentIndex]) + "&name=" + encodeURIComponent(userName) + "&bid=" + encodeURIComponent(bidAmount))
-                .then(response => response.text())
-                .then(data => alert(data));
-        }
-
-        function nextTeam() {
-            currentIndex++;
-            loadTeam();
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            shuffleTeams();
-            setUserName();
-            loadTeam();
-        });
-    </script>
 </head>
 <body>
     <h1>March Madness Auction</h1>
-    <div id="auction-area">
-        <h2 id="team-name"></h2>
-        <button onclick="placeBid()">Place Bid</button>
-        <button onclick="nextTeam()">Next Team</button>
+    <div id="lobby">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="userName" placeholder="Your Name">
+        <button onclick="joinAuction()">Join Auction</button>
     </div>
+
+    <div id="auction" style="display: none;">
+        <h2>Current Team: <span id="team-name">Waiting...</span></h2>
+        <h3>Highest Bid: $<span id="highest-bid">0</span> (by <span id="highest-bidder">N/A</span>)</h3>
+        <input type="number" id="bidAmount" placeholder="Enter your bid">
+        <button onclick="placeBid()">Place Bid</button>
+        <button onclick="finalizeAuction()">Finalize Auction</button>
+    </div>
+
+    <script>
+        const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+        let userName = "";
+
+        function joinAuction() {
+            userName = document.getElementById("userName").value;
+            if (!userName) {
+                alert("Please enter your name!");
+                return;
+            }
+            document.getElementById("lobby").style.display = "none";
+            document.getElementById("auction").style.display = "block";
+            fetchAuctionData();
+        }
+
+        function fetchAuctionData() {
+            fetch(scriptURL + "?action=getAuctionData")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("team-name").innerText = data[1][0];
+                    document.getElementById("highest-bid").innerText = data[1][1];
+                    document.getElementById("highest-bidder").innerText = data[1][2] || "N/A";
+                });
+        }
+
+        function placeBid() {
+            let bidAmount = document.getElementById("bidAmount").value;
+            if (!bidAmount || isNaN(bidAmount)) {
+                alert("Please enter a valid bid amount.");
+                return;
+            }
+            fetch(scriptURL + `?action=submitBid&name=${encodeURIComponent(userName)}&bid=${encodeURIComponent(bidAmount)}`)
+                .then(response => response.text())
+                .then(alert)
+                .then(fetchAuctionData);
+        }
+
+        function finalizeAuction() {
+            fetch(scriptURL + "?action=finalizeAuction")
+                .then(response => response.text())
+                .then(alert)
+                .then(fetchAuctionData);
+        }
+    </script>
 </body>
 </html>
