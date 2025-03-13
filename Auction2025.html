@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>March Madness Auction</title>
+    <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwiM3Sszf3lR1_iTBV1bv70Ovc5VxL7R80wqlLMqKxAAQLMDLSM9z5oD_is1AT72cElsA/exec";
+        let teams = ["Team 1", "Team 2", "Team 3", "Team 4", /* Add all 64 teams */];
+        let currentIndex = 0;
+        let userName = "";
+
+        function shuffleTeams() {
+            teams.sort(() => Math.random() - 0.5);
+        }
+
+        function setUserName() {
+            userName = prompt("Enter your name to start bidding:");
+            if (!userName) {
+                alert("You must enter a name!");
+                setUserName();
+            }
+        }
+
+        function loadTeam() {
+            if (currentIndex >= teams.length) {
+                document.getElementById("auction-area").innerHTML = "Auction complete!";
+                return;
+            }
+            document.getElementById("team-name").innerText = teams[currentIndex];
+        }
+
+        function placeBid() {
+            let bidAmount = prompt("Enter your bid amount:");
+            if (!bidAmount || isNaN(bidAmount)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+            fetch(scriptURL + "?team=" + encodeURIComponent(teams[currentIndex]) + "&name=" + encodeURIComponent(userName) + "&bid=" + encodeURIComponent(bidAmount))
+                .then(response => response.text())
+                .then(data => alert(data));
+        }
+
+        function nextTeam() {
+            currentIndex++;
+            loadTeam();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            shuffleTeams();
+            setUserName();
+            loadTeam();
+        });
+    </script>
+</head>
+<body>
+    <h1>March Madness Auction</h1>
+    <div id="auction-area">
+        <h2 id="team-name"></h2>
+        <button onclick="placeBid()">Place Bid</button>
+        <button onclick="nextTeam()">Next Team</button>
+    </div>
+</body>
+</html>
