@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>March Madness Calcutta</title>
     <style>
+        /* Ensure full page height */
         html, body {
             height: 100%;
             margin: 0;
@@ -19,38 +20,19 @@
             justify-content: flex-start;
         }
 
-        .container {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: flex-start; /* Align to the top vertically */
-            height: 100vh; /* Full viewport height */
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            position: relative;
-        }
-
-        iframe {
-            width: 80%; /* Set width to 80% */
-            max-width: 1200px; /* Maximum width of the iframe */
-            height: 600px; /* Fixed height for the iframe */
-            border: none;
-            display: block;
-            margin: 0 auto; /* Ensure it is centered horizontally */
-        }
-
+        /* Toolbar styles */
         .toolbar {
             background-color: #009CDE; /* NCAA blue background */
             color: #fff;
             padding: 10px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center the toolbar */
+            text-align: center; /* Toolbar centered text */
         }
 
         .toolbar a {
             color: #fff;
             text-decoration: none;
-            margin: 0 10px; /* Add margin to create space between links */
+            margin: 0 10px; /* Space between links */
             font-weight: bold;
             position: relative;
             display: inline-block;
@@ -89,12 +71,32 @@
             display: inline-block;
         }
 
+        /* H1 Styling */
         h1 {
             margin: 0;
             padding: 20px 0;
             text-align: center;
             background-color: #009CDE;
             color: #fff;
+        }
+
+        /* Container styles for iframe */
+        .container {
+            text-align: center; /* Center content horizontally like the toolbar */
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            display: block; /* Make the container a block-level element */
+        }
+
+        /* Iframe styling */
+        iframe {
+            width: 80%; /* Set iframe width to 80% of the container */
+            max-width: 1200px; /* Maximum width of the iframe */
+            height: 600px; /* Set height to 600px */
+            border: none;
+            margin: 0 auto; /* Auto margin on left and right to center it */
+            display: block; /* Treat iframe as a block element to allow centering */
         }
     </style>
 </head>
@@ -134,7 +136,7 @@
                 <a href="2024Picks.html">Picks</a>
                 <a href="2024TVSchedule.html">TV Schedule</a>
             </div>
-        </div>        
+        </div>
         <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
             <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2023">
@@ -142,33 +144,6 @@
                 <a href="2023PicksSorted.html">Picks Sorted</a>
                 <a href="2023Payouts.html">Payouts</a>
                 <a href="2023Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2022" onmouseover="toggleDropdown('dropdownContent2022', true)" onmouseout="toggleDropdown('dropdownContent2022', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2022')">2022 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2022">
-                <a href="2022FullBracket.html">Full Bracket</a>
-                <a href="2022PicksSorted.html">Picks Sorted</a>
-                <a href="2022Payouts.html">Payouts</a>
-                <a href="2022Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2018')">2018 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2018">
-                <a href="2018FullBracket.html">Full Bracket</a>
-                <a href="2018PicksSorted.html">Picks Sorted</a>
-                <a href="2018Payouts.html">Payouts</a>
-                <a href="2018Picks.html">Picks</a>
-            </div>
-        </div>
-        <div class="dropdown" id="dropdown2017" onmouseover="toggleDropdown('dropdownContent2017', true)" onmouseout="toggleDropdown('dropdownContent2017', false)">
-            <a href="#" onclick="handleDropdownClick(event, 'dropdown2017')">2017 <span class="dropdown-arrow">▼</span></a>
-            <div class="dropdown-content" id="dropdownContent2017">
-                <a href="2017FullBracket.html">Full Bracket</a>
-                <a href="2017PicksSorted.html">Picks Sorted</a>
-                <a href="2017Payouts.html">Payouts</a>
-                <a href="2017Picks.html">Picks</a>
             </div>
         </div>
     </div>
