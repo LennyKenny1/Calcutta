@@ -22,7 +22,7 @@
         .container {
             display: flex;
             justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            align-items: flex-start; /* Align to the top vertically */
             height: 100vh; /* Full viewport height */
             width: 100%;
             padding: 0;
@@ -31,12 +31,12 @@
         }
 
         iframe {
-            width: 80%; /* Set a specific width for the iframe */
-            max-width: 1200px; /* Maximum width limit for larger screens */
-            height: 80%; /* Set height as a percentage of the container */
+            width: 80%; /* Set width to 80% */
+            max-width: 1200px; /* Maximum width of the iframe */
+            height: 600px; /* Fixed height for the iframe */
             border: none;
             display: block;
-            margin: auto; /* Ensure it is centered horizontally */
+            margin: 0 auto; /* Ensure it is centered horizontally */
         }
 
         .toolbar {
@@ -173,6 +173,7 @@
         </div>
     </div>
 
+    <!-- The container for the iframe -->
     <div class="container" onclick="collapseDropdownsOnMobile(event)">
         <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTsNPYOVArO6tD8t2NCCTVRwGArBmyuyUmEtb1iA0SAf3Oxve9K6epGXQVYzOtqRHEDEehFLQ84zeuu/pubhtml?gid=408469145&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
     </div>
