@@ -16,9 +16,9 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: calc(100vh - 40px); /* Adjust to fit within the viewport height minus toolbar height */
-            margin: 0;
+            height: calc(100vh - 40px); /* Ensure the container takes the full height minus the toolbar */
             padding: 0;
+            margin: 0;
             position: relative;
         }
         iframe {
@@ -115,7 +115,7 @@
                 <a href="2024Picks.html">Picks</a>
                 <a href="2024TVSchedule.html">TV Schedule</a>
             </div>
-        </div>        
+        </div>		
         <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
             <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2023">
@@ -153,7 +153,6 @@
             </div>
         </div>
     </div>
-
     <div class="container" onclick="collapseDropdownsOnMobile(event)">
         <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTsNPYOVArO6tD8t2NCCTVRwGArBmyuyUmEtb1iA0SAf3Oxve9K6epGXQVYzOtqRHEDEehFLQ84zeuu/pubhtml?gid=408469145&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
     </div>
