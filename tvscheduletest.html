@@ -11,11 +11,15 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        .container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-        }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the container takes up full viewport height */
+    padding: 0;
+    margin: 0;
+    position: relative; /* Optional: This ensures the container takes the full height of the viewport */
+}
         iframe {
             width: 100%;
             height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
