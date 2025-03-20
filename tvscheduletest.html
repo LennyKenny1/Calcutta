@@ -11,18 +11,19 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ensure the container takes up full viewport height */
-    padding: 0;
-    margin: 0;
-    position: relative; /* Optional: This ensures the container takes the full height of the viewport */
-}
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: calc(100vh - 40px); /* Adjust to fit within the viewport height minus toolbar height */
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
         iframe {
             width: 100%;
-            height: calc(100vh - 40px); /* Adjust the height based on the viewport height minus toolbar height */
+            height: 100%; /* Make the iframe fill the container */
             border: none;
             display: block;
         }
@@ -92,7 +93,7 @@
                 <a href="TVScheduleSunday.html">R2 Sunday</a>
                 <a href="TVScheduleSweet16.html">Sweet 16</a>
                 <a href="TVScheduleElite8.html">Elite 8</a>
-		<a href="TVScheduleFinal4.html">Final 4</a>
+                <a href="TVScheduleFinal4.html">Final 4</a>
             </div>
         </div>
         <div class="dropdown" id="dropdown2025" onmouseover="toggleDropdown('dropdownContent2025', true)" onmouseout="toggleDropdown('dropdownContent2025', false)">
@@ -102,7 +103,7 @@
                 <a href="2025PicksSorted.html">Picks Sorted</a>
                 <a href="2025Payouts.html">Payouts</a>
                 <a href="2025Picks.html">Picks</a>
-		<a href="2025TVSchedule.html">TV Schedule</a>
+                <a href="2025TVSchedule.html">TV Schedule</a>
             </div>
         </div>
         <div class="dropdown" id="dropdown2024" onmouseover="toggleDropdown('dropdownContent2024', true)" onmouseout="toggleDropdown('dropdownContent2024', false)">
@@ -112,10 +113,10 @@
                 <a href="2024PicksSorted.html">Picks Sorted</a>
                 <a href="2024Payouts.html">Payouts</a>
                 <a href="2024Picks.html">Picks</a>
-		<a href="2024TVSchedule.html">TV Schedule</a>
+                <a href="2024TVSchedule.html">TV Schedule</a>
             </div>
-        </div>		
-	<div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
+        </div>        
+        <div class="dropdown" id="dropdown2023" onmouseover="toggleDropdown('dropdownContent2023', true)" onmouseout="toggleDropdown('dropdownContent2023', false)">
             <a href="#" onclick="handleDropdownClick(event, 'dropdown2023')">2023 <span class="dropdown-arrow">▼</span></a>
             <div class="dropdown-content" id="dropdownContent2023">
                 <a href="2023FullBracket.html">Full Bracket</a>
@@ -129,9 +130,8 @@
             <div class="dropdown-content" id="dropdownContent2022">
                 <a href="2022FullBracket.html">Full Bracket</a>
                 <a href="2022PicksSorted.html">Picks Sorted</a>
-		<a href="2022Payouts.html">Payouts</a>
+                <a href="2022Payouts.html">Payouts</a>
                 <a href="2022Picks.html">Picks</a>
-
             </div>
         </div>
         <div class="dropdown" id="dropdown2018" onmouseover="toggleDropdown('dropdownContent2018', true)" onmouseout="toggleDropdown('dropdownContent2018', false)">
@@ -139,7 +139,7 @@
             <div class="dropdown-content" id="dropdownContent2018">
                 <a href="2018FullBracket.html">Full Bracket</a>
                 <a href="2018PicksSorted.html">Picks Sorted</a>
-		<a href="2018Payouts.html">Payouts</a>
+                <a href="2018Payouts.html">Payouts</a>
                 <a href="2018Picks.html">Picks</a>
             </div>
         </div>
@@ -148,12 +148,13 @@
             <div class="dropdown-content" id="dropdownContent2017">
                 <a href="2017FullBracket.html">Full Bracket</a>
                 <a href="2017PicksSorted.html">Picks Sorted</a>
-		<a href="2017Payouts.html">Payouts</a>
+                <a href="2017Payouts.html">Payouts</a>
                 <a href="2017Picks.html">Picks</a>
             </div>
         </div>
     </div>
-     <div class="container" onclick="collapseDropdownsOnMobile(event)">
+
+    <div class="container" onclick="collapseDropdownsOnMobile(event)">
         <iframe id="embeddedSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTsNPYOVArO6tD8t2NCCTVRwGArBmyuyUmEtb1iA0SAf3Oxve9K6epGXQVYzOtqRHEDEehFLQ84zeuu/pubhtml?gid=408469145&amp;widget=true&amp;headers=false&amp;chrome=false"></iframe>
     </div>
 
