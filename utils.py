@@ -41,17 +41,24 @@ def update_payouts(df, teams, payout_structure, ff1_winner=None, ff2_winner=None
         additional_payouts[owner] += payout_structure[4] - payout_structure[3]  # Final 4 bonus
     
     # Process championship game
-    if champion and (ff1_winner and ff2_winner):
-        # Determine runner-up
-        runner_up = ff2_winner if champion == ff1_winner else ff1_winner
-        
+    if champion:
         # Champion bonus (Final 4 -> Champion)
         champion_owner = get_team_owner(champion, teams)
+        
+        # First, ensure the champion gets the Final Four bonus if they aren't set as a Final Four winner
+        if (champion != ff1_winner and champion != ff2_winner):
+            additional_payouts[champion_owner] += payout_structure[4] - payout_structure[3]  # Final 4 bonus
+        
+        # Then add the champion bonus
         additional_payouts[champion_owner] += payout_structure[6] - payout_structure[4]  # Champion bonus
         
-        # Runner-up bonus (Final 4 -> Runner-up)
-        runner_up_owner = get_team_owner(runner_up, teams)
-        additional_payouts[runner_up_owner] += payout_structure[5] - payout_structure[4]  # Runner-up bonus
+        # If both Final Four winners are selected, process runner-up bonus
+        if ff1_winner and ff2_winner:
+            # Determine runner-up
+            runner_up = ff2_winner if champion == ff1_winner else ff1_winner
+            # Runner-up bonus (Final 4 -> Runner-up)
+            runner_up_owner = get_team_owner(runner_up, teams)
+            additional_payouts[runner_up_owner] += payout_structure[5] - payout_structure[4]  # Runner-up bonus
     
     # Update payouts in the DataFrame
     for idx, row in updated_df.iterrows():
