@@ -90,7 +90,7 @@ with left_bracket:
     
     # Team 1 (Top)
     team1_selected = st.button(
-        f"{matchup_1[0]} (South #1)\nOwner: {get_team_owner(matchup_1[0], teams)}",
+        f"{matchup_1[0]} ({get_team_owner(matchup_1[0], teams)})",
         key="team1_button",
         use_container_width=True,
         type="primary" if st.session_state.final_four_1_winner == matchup_1[0] else "secondary"
@@ -102,7 +102,7 @@ with left_bracket:
     
     # Team 2 (Bottom)
     team2_selected = st.button(
-        f"{matchup_1[1]} (West #1)\nOwner: {get_team_owner(matchup_1[1], teams)}",
+        f"{matchup_1[1]} ({get_team_owner(matchup_1[1], teams)})",
         key="team2_button",
         use_container_width=True,
         type="primary" if st.session_state.final_four_1_winner == matchup_1[1] else "secondary"
@@ -131,7 +131,7 @@ with right_bracket:
     
     # Team 3 (Top)
     team3_selected = st.button(
-        f"{matchup_2[0]} (East #1)\nOwner: {get_team_owner(matchup_2[0], teams)}",
+        f"{matchup_2[0]} ({get_team_owner(matchup_2[0], teams)})",
         key="team3_button",
         use_container_width=True,
         type="primary" if st.session_state.final_four_2_winner == matchup_2[0] else "secondary"
@@ -143,7 +143,7 @@ with right_bracket:
     
     # Team 4 (Bottom)
     team4_selected = st.button(
-        f"{matchup_2[1]} (Midwest #1)\nOwner: {get_team_owner(matchup_2[1], teams)}",
+        f"{matchup_2[1]} ({get_team_owner(matchup_2[1], teams)})",
         key="team4_button",
         use_container_width=True,
         type="primary" if st.session_state.final_four_2_winner == matchup_2[1] else "secondary"
@@ -178,54 +178,92 @@ with center_bracket:
     championship_container = st.container()
     
     with championship_container:
-        # Only enable championship selection if both Final Four winners are selected
-        if st.session_state.final_four_1_winner and st.session_state.final_four_2_winner:
-            # Display the Final Four Winner from Left Bracket
-            champ1_selected = st.button(
-                f"{st.session_state.final_four_1_winner}\nOwner: {get_team_owner(st.session_state.final_four_1_winner, teams)}",
-                key="champ1_button",
-                use_container_width=True,
-                type="primary" if st.session_state.champion == st.session_state.final_four_1_winner else "secondary"
-            )
+        # Show all four final four teams for champion selection
+        # Team 1
+        champ1_selected = st.button(
+            f"{matchup_1[0]} ({get_team_owner(matchup_1[0], teams)})",
+            key="champ1_button",
+            use_container_width=True,
+            type="primary" if st.session_state.champion == matchup_1[0] else "secondary"
+        )
+        
+        # Space between championship teams
+        st.write("")
+        
+        # Team 2
+        champ2_selected = st.button(
+            f"{matchup_1[1]} ({get_team_owner(matchup_1[1], teams)})",
+            key="champ2_button",
+            use_container_width=True,
+            type="primary" if st.session_state.champion == matchup_1[1] else "secondary"
+        )
+        
+        # Space between championship teams
+        st.write("")
+        
+        # Team 3
+        champ3_selected = st.button(
+            f"{matchup_2[0]} ({get_team_owner(matchup_2[0], teams)})",
+            key="champ3_button",
+            use_container_width=True,
+            type="primary" if st.session_state.champion == matchup_2[0] else "secondary"
+        )
+        
+        # Space between championship teams
+        st.write("")
+        
+        # Team 4
+        champ4_selected = st.button(
+            f"{matchup_2[1]} ({get_team_owner(matchup_2[1], teams)})",
+            key="champ4_button",
+            use_container_width=True,
+            type="primary" if st.session_state.champion == matchup_2[1] else "secondary"
+        )
+        
+        # Handle champion selection
+        if champ1_selected:
+            st.session_state.champion = matchup_1[0]
+            # Also set as Final Four winner
+            st.session_state.final_four_1_winner = matchup_1[0]
+            # Clear any selection from the other bracket
+            st.session_state.final_four_2_winner = None
+            # Force rerun to update UI immediately
+            st.rerun()
             
-            # Space between championship teams
+        if champ2_selected:
+            st.session_state.champion = matchup_1[1]
+            # Also set as Final Four winner
+            st.session_state.final_four_1_winner = matchup_1[1]
+            # Clear any selection from the other bracket
+            st.session_state.final_four_2_winner = None
+            # Force rerun to update UI immediately
+            st.rerun()
+            
+        if champ3_selected:
+            st.session_state.champion = matchup_2[0]
+            # Also set as Final Four winner
+            st.session_state.final_four_2_winner = matchup_2[0]
+            # Clear any selection from the other bracket
+            st.session_state.final_four_1_winner = None
+            # Force rerun to update UI immediately
+            st.rerun()
+            
+        if champ4_selected:
+            st.session_state.champion = matchup_2[1]
+            # Also set as Final Four winner
+            st.session_state.final_four_2_winner = matchup_2[1]
+            # Clear any selection from the other bracket
+            st.session_state.final_four_1_winner = None
+            # Force rerun to update UI immediately
+            st.rerun()
+            
+        # Display champion (if selected)
+        if st.session_state.champion:
             st.write("")
             st.write("")
+            st.success(f"Champion: {st.session_state.champion}")
             
-            # Display the Final Four Winner from Right Bracket
-            champ2_selected = st.button(
-                f"{st.session_state.final_four_2_winner}\nOwner: {get_team_owner(st.session_state.final_four_2_winner, teams)}",
-                key="champ2_button",
-                use_container_width=True,
-                type="primary" if st.session_state.champion == st.session_state.final_four_2_winner else "secondary"
-            )
-            
-            # Handle champion selection
-            if champ1_selected:
-                st.session_state.champion = st.session_state.final_four_1_winner
-                # Force rerun to update UI immediately
-                st.rerun()
-                
-            if champ2_selected:
-                st.session_state.champion = st.session_state.final_four_2_winner
-                # Force rerun to update UI immediately
-                st.rerun()
-                
-            # Display champion (if selected)
-            if st.session_state.champion:
-                st.write("")
-                st.write("")
-                st.success(f"Champion: {st.session_state.champion}")
-        else:
-            st.info("Select winners from both brackets")
-            
-# Display the Champion Trophy container at the center bottom
-if st.session_state.champion:
-    st.subheader("🏆 Tournament Champion 🏆")
-    champion_col = st.columns(3)[1]  # Center column
-    with champion_col:
-        st.success(f"{st.session_state.champion} (Owner: {get_team_owner(st.session_state.champion, teams)})")
-        st.write(f"Payout Increase: ${payout_structure[6] - payout_structure[4]:,.2f}")
+# Removed the Champion Trophy container as requested
 
 # Reset button
 if st.button("Reset Selections", use_container_width=True):
